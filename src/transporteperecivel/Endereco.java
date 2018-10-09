@@ -10,5 +10,8 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Endereco {
-    
+    String rua;
+    String bairro;
+    String cidade;
+    int  numero;
 }

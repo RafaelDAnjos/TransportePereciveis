@@ -10,5 +10,6 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Pedido {
-    
+    int numeroBandas;
+    Cliente novoCliente;
 }

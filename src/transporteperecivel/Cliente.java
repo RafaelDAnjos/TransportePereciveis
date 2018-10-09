@@ -10,5 +10,7 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Cliente {
-    
+    String nomeEmpresa;
+    Endereco enderecoEmpresa;
+    String horarioEntrega;
 }

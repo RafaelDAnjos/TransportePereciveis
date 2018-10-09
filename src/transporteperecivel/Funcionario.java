@@ -11,6 +11,7 @@ package transporteperecivel;
  */
 public class Funcionario {
     String nome;
-    int cpf;
+    String cpf;
+    String senha;
     
 }

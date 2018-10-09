@@ -10,5 +10,10 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Veiculo {
-    
+    boolean refrigerado;
+    float pesoMax;
+    String modelo;
+    String Placa;
+    Motorista motorista;
+    String cidade;
 }
