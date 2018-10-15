@@ -5,6 +5,8 @@
  */
 package transporteperecivel;
 
+import janelas.Login;
+
 /**
  *
  * @author rafaelda
@@ -16,6 +18,9 @@ public class TransportePerecivel {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    }
+         
+        Login novologin = new Login();
+        novologin.setVisible(true);
     
+}
 }

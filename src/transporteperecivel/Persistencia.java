@@ -12,9 +12,16 @@ import java.util.ArrayList;
  */
 public class Persistencia {
     public ArrayList<Funcionario>listaFuncionarios = new ArrayList<Funcionario>();
-    public void SalvarFunc(Funcionario novoFuncionario){
-        listaFuncionarios.add(novoFuncionario);
-        
+    public void salvarFunc(Funcionario novoFuncionario){
+        this.listaFuncionarios.add(novoFuncionario);
+        //return listaFuncionarios;
                 }
+    public void listar(){
+        for(Funcionario funcionario: listaFuncionarios){
+            System.out.println("Funcionario" + funcionario.nome);
+        }
+    }
+    
+    
 }
 

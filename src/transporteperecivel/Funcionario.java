@@ -5,6 +5,8 @@
  */
 package transporteperecivel;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author rafaelda
@@ -13,5 +15,10 @@ public class Funcionario {
     String nome;
     String cpf;
     String senha;
+    public Funcionario(){
+   // nome = JOptionPane.showInputDialog("Entre com o nome do funcionario: ");
+    //cpf = JOptionPane.showInputDialog("Entre com o cpf do funcionario: ");
+    //senha = JOptionPane.showInputDialog("Entre com a senha do funcionario: ");
+    }
     
 }
