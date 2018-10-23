@@ -96,10 +96,7 @@ public class Login extends javax.swing.JFrame {
        
         String cpf = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
-        AcessoLogin novologin = new AcessoLogin(cpf,senha);
-        if(novologin.verificaAcesso()){
-            System.out.println("logado");
-        }
+     
         
         
         

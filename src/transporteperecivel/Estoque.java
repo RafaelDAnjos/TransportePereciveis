@@ -12,4 +12,5 @@ package transporteperecivel;
 public class Estoque {
     int numeroBandas;
     String dataAbate;
+ 
 }
