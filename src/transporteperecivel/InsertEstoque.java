@@ -12,7 +12,7 @@ import java.sql.Statement;
  *
  * @author 20161bsi0527
  */
-public class PersistenciaEstoque {
+public class InsertEstoque {
     
     
     public void inserirEstoque(int numeroBanda, String dataAbate){
@@ -24,7 +24,8 @@ public class PersistenciaEstoque {
             c = DriverManager.getConnection("jdbc:sqlite:veiculos.db");            
             System.out.println("Base de dados aberta");                        
             stmt = c.createStatement();
-            String sql = "";
+            String sql = "INSERT INTO ESTOQUE (NUMEROBANDA, DATAABATE) values "
+                    + "("+ numeroBanda + ", " + "'"+dataAbate + "'" +")";
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();
