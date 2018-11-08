@@ -23,7 +23,7 @@ public class DBConnection {
             try {
                 Connection c = null;
                 Class.forName("org.postgresql.Driver");
-                c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "serra");
+                c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
                 c.setAutoCommit(true);
                 instance = c;
             } catch (Exception e) {

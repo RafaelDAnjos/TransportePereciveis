@@ -10,24 +10,24 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Cliente;
+import transporteperecivel.Endereco;
 
 /**
  *
  * @author Daniel
  */
-public class BDCliente {
+public class BDEndereco {
 
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), enderecoEmpresa varchar(100), horarioEntrega varchar(40));";
+            String comando = "CREATE TABLE endereco (rua varchar(80), bairro varchar(80), cidade varchar(80), numero int);";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -38,7 +38,7 @@ public class BDCliente {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(Cliente cliente) {
+    public  void insertTable(Endereco endereco) {
     
     Connection c = null;
     Statement stmt = null;
@@ -48,9 +48,9 @@ public class BDCliente {
         c.setAutoCommit(false);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
-        
-        String comando = "INSERT INTO cliente (nomeEmpresa, enderecoEmpresa, horarioEntrega)VALUES('"
-                + cliente.getNomeEmpresa() + "','" + cliente.getEnderecoEmpresa() + "','" +cliente.getHorarioEntrega() +"');";   
+       
+        String comando = "INSERT INTO cliente (rua, bairro, cidade, numero)VALUES('"
+                + endereco.getRua() + "','" + endereco.getBairro() + "','" + endereco.getCidade() + "'," + endereco.getNumero() + ");"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -62,17 +62,17 @@ public class BDCliente {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String nomeEmpresa) {
+    public  void deleteTable(String rua) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
             c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cliente WHERE nomeEmpresa='" + nomeEmpresa +"';";
+            String comando = "DELETE FROM cliente WHERE rua='" + rua +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -85,7 +85,7 @@ public class BDCliente {
     }
 
     public synchronized ArrayList selectTable() {
-        ArrayList listClientes = new ArrayList();        
+        ArrayList listEnderecos = new ArrayList();        
         Connection c = null;
         Statement stmt = null;
         try {
@@ -95,15 +95,15 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM cliente ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setNomeEmpresa(rs.getString("nomeEmpresa"));
+                Endereco endereco = new Endereco();
+                endereco.setRua(rs.getString("rua"));
                 
-                //cliente.setEnderecoEmpresa(rs.getString("enderecoEmpresa"));
+                endereco.setBairro(rs.getString("bairro"));
                 
-                cliente.setHorarioEntrega(rs.getString("horarioEntrega"));            
-                listClientes.add(cliente);
+                endereco.setCidade(rs.getString("cidade"));            
+                listEnderecos.add(endereco);
             }
             rs.close();
             stmt.close();
@@ -112,7 +112,7 @@ public class BDCliente {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Operação realizada com sucesso!!");
-        return listClientes;
+        return listEnderecos;
     }
     
 }

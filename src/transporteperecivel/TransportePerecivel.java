@@ -5,7 +5,9 @@
  */
 package transporteperecivel;
 
+import conexao.BDEndereco;
 import conexao.DBConnection;
+import conexao.SelectEstoque;
 
 
 /**
@@ -20,6 +22,17 @@ public class TransportePerecivel {
     public static void main(String[] args) {
         // TODO code application logic here
         DBConnection.getInstance();
+        Endereco endereco = new Endereco();
+        
+        endereco.setBairro("São pedro");
+        endereco.setCidade("Vitória");
+        endereco.setNumero(30);
+        endereco.setRua("Rua dourada");
+        
+        BDEndereco enderecoBD = new BDEndereco();
+        enderecoBD.createTable();
+        
+        
         
         
         

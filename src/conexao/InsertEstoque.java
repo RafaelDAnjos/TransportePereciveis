@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package conexao;
+import conexao.DBConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -19,12 +20,12 @@ public class InsertEstoque {
                 Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.postgres.Driver");
-            c = DriverManager.getConnection("jdbc:postgres:veiculos.db");            
+            Class.forName("org.sqlite.JDBC");
+            c = DriverManager.getConnection("jdbc:sqlite:veiculos.db");            
             System.out.println("Base de dados aberta");                        
             stmt = c.createStatement();
             String sql = "INSERT INTO ESTOQUE (NUMEROBANDA, DATAABATE) values "
-                    + "("+ numeroBanda + ", " + dataAbate + ")";
+                    + "("+ numeroBanda + ", " + "'"+dataAbate + "'" +")";
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();

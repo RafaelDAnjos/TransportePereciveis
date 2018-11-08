@@ -5,34 +5,29 @@
  */
 package transporteperecivel;
 
-import conexao.DBConnection;
-import conexao.InsertEstoque;
-import conexao.SelectEstoque;
-import java.util.ArrayList;
-
 /**
  *
  * @author rafaelda
  */
 public class Estoque {
-   public int numeroBandas;
-   public String dataAbate;
- public void adicionarEmEstoque(){
-  
-     InsertEstoque estoque = new InsertEstoque();
-     
-     estoque.inserirEstoque(numeroBandas, dataAbate);
-     
- }
+    public int numeroBandas;
+    public String dataAbate;
+
+    public int getNumeroBandas() {
+        return numeroBandas;
+    }
+
+    public void setNumeroBandas(int numeroBandas) {
+        this.numeroBandas = numeroBandas;
+    }
+
+    public String getDataAbate() {
+        return dataAbate;
+    }
+
+    public void setDataAbate(String dataAbate) {
+        this.dataAbate = dataAbate;
+    }
+    
  
-public void deletarEmEstoque(int numBandaremover){
-    SelectEstoque novoselect = new SelectEstoque();
-    ArrayList<Estoque>estoque = new ArrayList();
-    estoque = novoselect.selectTable();
-}
-public int diminuirEstoque(){
-    
-    
-       return 0;
-}
 }

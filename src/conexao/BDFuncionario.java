@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package conexao;
+package database.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Cliente;
 
 /**
  *
  * @author Daniel
  */
-public class BDCliente {
+/*
+public class BDFuncionario {
 
     public synchronized void  createTable() {
         Connection c = null;
@@ -24,10 +24,11 @@ public class BDCliente {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), enderecoEmpresa varchar(100), horarioEntrega varchar(40));";
+            String comando = "CREATE TABLE funcionario (nome varchar(50), cpf varchar(20), senha varchar(20);";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -38,7 +39,7 @@ public class BDCliente {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(Cliente cliente) {
+    public  void insertTable(Funcionario funcionario) {
     
     Connection c = null;
     Statement stmt = null;
@@ -48,9 +49,9 @@ public class BDCliente {
         c.setAutoCommit(false);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
-        
-        String comando = "INSERT INTO cliente (nomeEmpresa, enderecoEmpresa, horarioEntrega)VALUES('"
-                + cliente.getNomeEmpresa() + "','" + cliente.getEnderecoEmpresa() + "','" +cliente.getHorarioEntrega() +"');";   
+       
+        String comando = "INSERT INTO funcionario (nome, cpf, senha)VALUES('"
+                + funcionario.getNome() + "','" + funcionario.getCpf() + "','" + funcionario.getSenha() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -62,7 +63,7 @@ public class BDCliente {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String nomeEmpresa) {
+    public  void deleteTable(String nome) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -72,7 +73,7 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cliente WHERE nomeEmpresa='" + nomeEmpresa +"';";
+            String comando = "DELETE FROM funcionario WHERE rua='" + nome +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -85,7 +86,7 @@ public class BDCliente {
     }
 
     public synchronized ArrayList selectTable() {
-        ArrayList listClientes = new ArrayList();        
+        ArrayList listEnderecos = new ArrayList();        
         Connection c = null;
         Statement stmt = null;
         try {
@@ -95,15 +96,15 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM cliente ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setNomeEmpresa(rs.getString("nomeEmpresa"));
+                Endereco endereco = new Endereco();
+                endereco.setRua(rs.getString("rua"));
                 
-                //cliente.setEnderecoEmpresa(rs.getString("enderecoEmpresa"));
+                endereco.setBairro(rs.getString("bairro"));
                 
-                cliente.setHorarioEntrega(rs.getString("horarioEntrega"));            
-                listClientes.add(cliente);
+                endereco.setCidade(rs.getString("cidade"));            
+                listEnderecos.add(endereco);
             }
             rs.close();
             stmt.close();
@@ -112,7 +113,8 @@ public class BDCliente {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Operação realizada com sucesso!!");
-        return listClientes;
+        return listEnderecos;
     }
     
 }
+*/
