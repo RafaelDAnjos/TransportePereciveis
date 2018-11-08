@@ -5,7 +5,7 @@
  */
 package transporteperecivel;
 
-import database.example.DBConnection;
+import conexao.DBConnection;
 
 
 /**

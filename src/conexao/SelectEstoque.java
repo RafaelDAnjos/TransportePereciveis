@@ -1,18 +1,20 @@
-package database.example;
+package conexao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.*;
+import java.util.ArrayList;
+import transporteperecivel.Estoque;
 
 /**
  *
  * @author felipe
  */
-public class SelectTable {
+public class SelectEstoque {
 
-    public synchronized void selectTable() {
-
+    public ArrayList<Estoque> selectTable() {
+        ArrayList<Estoque>estoques = new ArrayList();
         Connection c = null;
         Statement stmt = null;
         try {
@@ -22,17 +24,13 @@ public class SelectTable {
             c.setAutoCommit(false);
             System.out.println("Opened database successfully");
             stmt = c.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Funcionario;");
-            while (rs.next()) {             
-                int codigo = rs.getInt("codigo");
-                String nome = rs.getString("nome");
-                int codEnd = rs.getInt("codEnd");
-                String funcao = rs.getString("funcao");
-
-                System.out.println("CODIGO = " + codigo);
-                System.out.println("NOME = " + nome);
-                System.out.println("CODIGO ENDEREÇO = " + codEnd);
-                System.out.println("FUNÇÃO = " + funcao);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM estoque ;");
+            while (rs.next()) {
+                Estoque novoestoque = new Estoque();
+                novoestoque.numeroBandas = rs.getInt("numbanda");
+                novoestoque.dataAbate = rs.getString("dataAbate");
+                estoques.add(novoestoque);
+           
             }
             rs.close();
             stmt.close();
@@ -41,5 +39,7 @@ public class SelectTable {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Operation done successfully");
-    }
+        return estoques;
+    
+}
 }

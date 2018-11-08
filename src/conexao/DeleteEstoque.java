@@ -3,28 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package database.example;
+package conexao;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+
 /**
  *
- * @author 20161bsi0527
+ * @author rafael
  */
-public class InsertEstoque {
-    
-    
-    public void inserirEstoque(int numeroBanda, String dataAbate){
+public class DeleteEstoque {
+        public void alterarEstoque(int numeroBanda, String dataAbate){
         DBConnection.getInstance();
                 Connection c = null;
         Statement stmt = null;
         try {
-            Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:veiculos.db");            
+            Class.forName("org.postgres.Driver");
+            c = DriverManager.getConnection("jdbc:postgres:veiculos.db");            
             System.out.println("Base de dados aberta");                        
             stmt = c.createStatement();
-            String sql = "INSERT INTO ESTOQUE (NUMEROBANDA, DATAABATE) values "
-                    + "("+ numeroBanda + ", " + "'"+dataAbate + "'" +")";
+            String sql = "alter table estoque alter column numeroBanda to" + numeroBanda;
             stmt.executeUpdate(sql);
             stmt.close();
             c.commit();
@@ -39,3 +38,5 @@ public class InsertEstoque {
     
     
 }
+
+
