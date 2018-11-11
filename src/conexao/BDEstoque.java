@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Estoque;
+import transporteperecivel.BandaPorco;
 
 /**
  *
@@ -39,7 +39,7 @@ public class BDEstoque {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(Estoque estoque) {
+    public  void insertTable(BandaPorco estoque) {
     
     Connection c = null;
     Statement stmt = null;
@@ -98,7 +98,7 @@ public class BDEstoque {
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM estoque ;");
             while (rs.next()) {
-                Estoque estoque = new Estoque();
+                BandaPorco estoque = new BandaPorco();
                 estoque.setNumeroBandas(rs.getInt("numeroBandas"));
                 estoque.setDataAbate(rs.getString("dataAbate"));
                 listEstoque.add(estoque);

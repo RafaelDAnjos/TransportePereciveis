@@ -27,7 +27,7 @@ public class BDEndereco {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE endereco (rua varchar(80), bairro varchar(80), cidade varchar(80), numero int);";
+            String comando = "CREATE TABLE endereco (logradouro varchar(80), bairro varchar(80), cidade varchar(80), descricao varchar(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -50,7 +50,7 @@ public class BDEndereco {
         stmt = c.createStatement();
        
         String comando = "INSERT INTO cliente (rua, bairro, cidade, numero)VALUES('"
-                + endereco.getRua() + "','" + endereco.getBairro() + "','" + endereco.getCidade() + "'," + endereco.getNumero() + ");"; 
+                + endereco.getLogradouro() + "','" + endereco.getBairro() + "','" + endereco.getCidade() + "','" + endereco.getDescricao() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -62,7 +62,7 @@ public class BDEndereco {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String rua) {
+    public  void deleteTable(String descricao) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -72,7 +72,7 @@ public class BDEndereco {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cliente WHERE rua='" + rua +"';";
+            String comando = "DELETE FROM cliente WHERE rua='" + descricao +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -98,11 +98,10 @@ public class BDEndereco {
             ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
                 Endereco endereco = new Endereco();
-                endereco.setRua(rs.getString("rua"));
-                
-                endereco.setBairro(rs.getString("bairro"));
-                
-                endereco.setCidade(rs.getString("cidade"));            
+                endereco.setLogradouro(rs.getString("logradouro"));
+                endereco.setBairro(rs.getString("bairro"));              
+                endereco.setCidade(rs.getString("cidade"));
+                endereco.setDescricao(rs.getString("descricao")); 
                 listEnderecos.add(endereco);
             }
             rs.close();

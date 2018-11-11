@@ -9,16 +9,16 @@ package transporteperecivel;
  *
  * @author rafaelda
  */
-public class Estoque {
-    public int numeroBandas;
-    public String dataAbate;
+public class BandaPorco {
+    private int quantidade;
+    private String dataAbate;
 
     public int getNumeroBandas() {
-        return numeroBandas;
+        return quantidade;
     }
 
     public void setNumeroBandas(int numeroBandas) {
-        this.numeroBandas = numeroBandas;
+        this.quantidade = numeroBandas;
     }
 
     public String getDataAbate() {

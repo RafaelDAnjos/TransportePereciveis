@@ -10,17 +10,17 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Endereco {
-    String rua;
-    String bairro;
-    String cidade;
-    int  numero;
+    private String logradouro;
+    private String bairro;
+    private String cidade;
+    private String descricao;
 
-    public String getRua() {
-        return rua;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setRua(String rua) {
-        this.rua = rua;
+    public void setLogradouro(String rua) {
+        this.logradouro = rua;
     }
 
     public String getBairro() {
@@ -37,14 +37,14 @@ public class Endereco {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }    
+
+    public String getDescricao() {
+        return descricao;
     }
 
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
     

@@ -5,7 +5,6 @@
  */
 package transporteperecivel;
 
-import javax.swing.JOptionPane;
 
 /**
  *

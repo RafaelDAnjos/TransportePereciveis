@@ -10,13 +10,13 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Cliente {
-    String nomeEmpresa;
-    Endereco enderecoEmpresa;
-    String horarioEntrega;
+    private String nomeEmpresa;
+    private Endereco endereco;
+    private String horarioEntrega;
 
     public Cliente() {
         this.nomeEmpresa = nomeEmpresa;
-        this.enderecoEmpresa = enderecoEmpresa;
+        this.endereco = endereco;
         this.horarioEntrega = horarioEntrega;
     }
 
@@ -28,12 +28,12 @@ public class Cliente {
         this.nomeEmpresa = nomeEmpresa;
     }
 
-    public Endereco getEnderecoEmpresa() {
-        return enderecoEmpresa;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEnderecoEmpresa(Endereco enderecoEmpresa) {
-        this.enderecoEmpresa = enderecoEmpresa;
+    public void setEndereco(Endereco enderecoEmpresa) {
+        this.endereco = enderecoEmpresa;
     }
 
     public String getHorarioEntrega() {

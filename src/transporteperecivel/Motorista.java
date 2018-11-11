@@ -10,5 +10,14 @@ package transporteperecivel;
  * @author 20171bsi0073
  */
 public class Motorista extends Funcionario{
-    Veiculo novoVeiculo;
+    private Veiculo novoVeiculo;
+
+    public Veiculo getNovoVeiculo() {
+        return novoVeiculo;
+    }
+
+    public void setNovoVeiculo(Veiculo novoVeiculo) {
+        this.novoVeiculo = novoVeiculo;
+    }
+    
 }

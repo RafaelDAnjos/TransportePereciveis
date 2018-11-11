@@ -10,6 +10,32 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Pedido {
-    int numeroBandas;
-    Cliente novoCliente;
+    private int numeroBandas;
+    private String dataDeEntrega;
+    private Cliente novoCliente;
+
+    public int getNumeroBandas() {
+        return numeroBandas;
+    }
+
+    public void setNumeroBandas(int numeroBandas) {
+        this.numeroBandas = numeroBandas;
+    }
+
+    public String getDataDeEntrega() {
+        return dataDeEntrega;
+    }
+
+    public void setDataDeEntrega(String dataDeEntrega) {
+        this.dataDeEntrega = dataDeEntrega;
+    }
+
+    public Cliente getNovoCliente() {
+        return novoCliente;
+    }
+
+    public void setNovoCliente(Cliente novoCliente) {
+        this.novoCliente = novoCliente;
+    }
+    
 }

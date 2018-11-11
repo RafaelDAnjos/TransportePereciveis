@@ -27,7 +27,7 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), enderecoEmpresa varchar(100), horarioEntrega varchar(40));";
+            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), endereco varchar(100), horarioEntrega varchar(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -50,7 +50,7 @@ public class BDCliente {
         stmt = c.createStatement();
         
         String comando = "INSERT INTO cliente (nomeEmpresa, enderecoEmpresa, horarioEntrega)VALUES('"
-                + cliente.getNomeEmpresa() + "','" + cliente.getEnderecoEmpresa() + "','" +cliente.getHorarioEntrega() +"');";   
+                + cliente.getNomeEmpresa() + "','" + cliente.getEndereco() + "','" +cliente.getHorarioEntrega() +"');";   
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -100,7 +100,7 @@ public class BDCliente {
                 Cliente cliente = new Cliente();
                 cliente.setNomeEmpresa(rs.getString("nomeEmpresa"));
                 
-                //cliente.setEnderecoEmpresa(rs.getString("enderecoEmpresa"));
+                //cliente.setEndereco(rs.getString("endereco"));
                 
                 cliente.setHorarioEntrega(rs.getString("horarioEntrega"));            
                 listClientes.add(cliente);
