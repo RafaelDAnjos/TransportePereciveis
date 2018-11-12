@@ -31,10 +31,6 @@ public class Endereco {
         this.idBairro = idBairro;
     }
 
-    public String getComplemento() {
-        return complemento;
-    }
-
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
@@ -45,6 +41,11 @@ public class Endereco {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public String getComplemento() {
+        return complemento;
+        
     }
 
 

@@ -98,9 +98,9 @@ public class BDEndereco {
             ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
                 Endereco endereco = new Endereco();
-                endereco.setIdLogradouro(rs.getString("logradouro"));
-                endereco.setIdBairro(rs.getString("bairro"));              
-                endereco.getComplemento(rs.getString("complemento"));
+                endereco.setIdLogradouro(rs.getInt("logradouro"));
+                endereco.setIdBairro(rs.getInt("bairro"));              
+                endereco.setComplemento(rs.getString("complemento"));
                 endereco.setDescricao(rs.getString("descricao")); 
                 listEnderecos.add(endereco);
             }
