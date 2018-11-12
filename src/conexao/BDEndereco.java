@@ -27,7 +27,7 @@ public class BDEndereco {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE endereco (logradouro varchar(80), bairro varchar(80), cidade varchar(80), descricao varchar(40));";
+            String comando = "CREATE TABLE endereco (idLogradouro int, idBairro int, complemento varchar(80), descricao varchar(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -50,7 +50,7 @@ public class BDEndereco {
         stmt = c.createStatement();
        
         String comando = "INSERT INTO cliente (rua, bairro, cidade, numero)VALUES('"
-                + endereco.getLogradouro() + "','" + endereco.getBairro() + "','" + endereco.getCidade() + "','" + endereco.getDescricao() + "');"; 
+                + endereco.getIdLogradouro() + "','" + endereco.getIdBairro() + "','" + endereco.getComplemento() + "','" + endereco.getDescricao() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -98,9 +98,9 @@ public class BDEndereco {
             ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
                 Endereco endereco = new Endereco();
-                endereco.setLogradouro(rs.getString("logradouro"));
-                endereco.setBairro(rs.getString("bairro"));              
-                endereco.setCidade(rs.getString("cidade"));
+                endereco.setIdLogradouro(rs.getString("logradouro"));
+                endereco.setIdBairro(rs.getString("bairro"));              
+                endereco.getComplemento(rs.getString("complemento"));
                 endereco.setDescricao(rs.getString("descricao")); 
                 listEnderecos.add(endereco);
             }

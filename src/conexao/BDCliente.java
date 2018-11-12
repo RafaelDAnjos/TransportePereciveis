@@ -17,17 +17,19 @@ import transporteperecivel.Cliente;
  * @author Daniel
  */
 public class BDCliente {
-
+    public static String url = "jdbc:postgresql://localhost:5432/testeJava";
+    public static String usuario = "postgres";
+    public static String senha = "serra" ;
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url,usuario,senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), endereco varchar(100), horarioEntrega varchar(40));";
+            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), endereco varchar(500), horarioEntrega varchar(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -44,7 +46,7 @@ public class BDCliente {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection(url,usuario,senha);
         c.setAutoCommit(false);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
@@ -67,7 +69,7 @@ public class BDCliente {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url,usuario,senha);
             c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
@@ -90,7 +92,7 @@ public class BDCliente {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url,usuario,senha);
             c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
