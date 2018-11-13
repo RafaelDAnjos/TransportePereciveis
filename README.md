@@ -8,5 +8,3 @@
 
 ### DIAGRAMA DE CLASSES<br>
 [DIAGRAMA DE CLASSE](https://github.com/RafaelDAnjos/TransportePereciveis/blob/master/classe.png)
-
-
