@@ -9,12 +9,12 @@ package transporteperecivel;
  *
  * @author rafaelda
  */
-public class Veiculo {
+public class Automovel {
     private boolean refrigerado;
     private float pesoMax;
-    private Modelo modelo;
+    private int idModelo;
     private String placa;
-    private Motorista motorista;
+    private int idFuncionario;
     private String cidade;
 
     public boolean isRefrigerado() {
@@ -33,12 +33,12 @@ public class Veiculo {
         this.pesoMax = pesoMax;
     }
 
-    public Modelo getModelo() {
-        return modelo;
+    public int getIdModelo() {
+        return idModelo;
     }
 
-    public void setModelo(Modelo modelo) {
-        this.modelo = modelo;
+    public void setIdModelo(int idModelo) {
+        this.idModelo = idModelo;
     }
 
     public String getPlaca() {
@@ -49,12 +49,12 @@ public class Veiculo {
         this.placa = placa;
     }
 
-    public Motorista getMotorista() {
-        return motorista;
+    public int getIdFuncionario() {
+        return idFuncionario;
     }
 
-    public void setMotorista(Motorista motorista) {
-        this.motorista = motorista;
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
     }
 
     public String getCidade() {
@@ -64,5 +64,6 @@ public class Veiculo {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
-    
+
+
 }

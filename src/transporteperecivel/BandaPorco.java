@@ -10,24 +10,33 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class BandaPorco {
+    private String dataDeAbate;
     private int quantidade;
-    private String dataAbate;
+    private int id;
 
-    public int getNumeroBandas() {
+    public String getDataDeAbate() {
+        return dataDeAbate;
+    }
+
+    public void setDataDeAbate(String dataDeAbate) {
+        this.dataDeAbate = dataDeAbate;
+    }
+
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setNumeroBandas(int numeroBandas) {
-        this.quantidade = numeroBandas;
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 
-    public String getDataAbate() {
-        return dataAbate;
+    public int getId() {
+        return id;
     }
 
-    public void setDataAbate(String dataAbate) {
-        this.dataAbate = dataAbate;
+    public void setId(int id) {
+        this.id = id;
     }
-    
  
+
 }

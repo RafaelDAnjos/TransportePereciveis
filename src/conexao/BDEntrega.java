@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Daniel
  */
 
-public class BDFuncionario {
+public class BDEntrega {
     
     
 }

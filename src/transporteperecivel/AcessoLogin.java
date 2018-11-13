@@ -11,8 +11,8 @@ package transporteperecivel;
  * @author 20171bsi0073
  */
 public class AcessoLogin {
-    String cpfLogin;
-    String senhaLogin;
+    private String cpfLogin;
+    private String senhaLogin;
     
     public AcessoLogin(String cpf, String senha){
     cpfLogin  = cpf;

@@ -14,6 +14,8 @@ public class Funcionario {
     private String nome;
     private String cpf;
     private String senha;
+    private String cargaHoraria;
+    private int id;
 
     public String getNome() {
         return nome;
@@ -38,6 +40,23 @@ public class Funcionario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public String getCargaHoraria() {
+        return cargaHoraria;
+    }
+
+    public void setCargaHoraria(String cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
+
         
 }

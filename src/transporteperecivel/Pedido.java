@@ -12,7 +12,7 @@ package transporteperecivel;
 public class Pedido {
     private int numeroBandas;
     private String dataDeEntrega;
-    private Cliente novoCliente;
+    private int id;
 
     public int getNumeroBandas() {
         return numeroBandas;
@@ -30,12 +30,13 @@ public class Pedido {
         this.dataDeEntrega = dataDeEntrega;
     }
 
-    public Cliente getNovoCliente() {
-        return novoCliente;
+    public int getId() {
+        return id;
     }
 
-    public void setNovoCliente(Cliente novoCliente) {
-        this.novoCliente = novoCliente;
+    public void setId(int id) {
+        this.id = id;
     }
-    
+
+
 }

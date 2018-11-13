@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package conexao;
 
 import java.sql.Connection;
@@ -16,20 +11,19 @@ import transporteperecivel.Cliente;
  *
  * @author Daniel
  */
+
 public class BDCliente {
-    public static String url = "jdbc:postgresql://localhost:5432/testeJava";
-    public static String usuario = "postgres";
-    public static String senha = "serra" ;
+
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection(url,usuario,senha);
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cliente (nomeEmpresa varchar(80), endereco varchar(500), horarioEntrega varchar(40));";
+            String comando = "CREATE TABLE cliente (nomeFicticio VARCHAR[50], id INT, cnpj VARCHAR(12));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -46,13 +40,12 @@ public class BDCliente {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection(url,usuario,senha);
-        c.setAutoCommit(false);
+        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
-        
-        String comando = "INSERT INTO cliente (nomeEmpresa, enderecoEmpresa, horarioEntrega)VALUES('"
-                + cliente.getNomeEmpresa() + "','" + cliente.getEndereco() + "','" +cliente.getHorarioEntrega() +"');";   
+       
+        String comando = "INSERT INTO cliente (nomeFicticio, id, cnpj)VALUES('"
+                + cliente.getNomeFicticio() + "'," + cliente.getId() + ",'" + cliente.getCnpj() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -64,17 +57,16 @@ public class BDCliente {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String nomeEmpresa) {
+    public  void deleteTable(String cnpj) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection(url,usuario,senha);
-            c.setAutoCommit(false);
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cliente WHERE nomeEmpresa='" + nomeEmpresa +"';";
+            String comando = "DELETE FROM cliente WHERE cnpj='" + cnpj +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -92,19 +84,17 @@ public class BDCliente {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection(url,usuario,senha);
-            c.setAutoCommit(false);
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            //c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM cliente ;");
             while (rs.next()) {
                 Cliente cliente = new Cliente();
-                cliente.setNomeEmpresa(rs.getString("nomeEmpresa"));
-                
-                //cliente.setEndereco(rs.getString("endereco"));
-                
-                cliente.setHorarioEntrega(rs.getString("horarioEntrega"));            
+                cliente.setNomeFicticio(rs.getString("nomeFicticio"));
+                cliente.setId(rs.getInt("id"));              
+                cliente.setCnpj(rs.getString("cnpj"));
                 listClientes.add(cliente);
             }
             rs.close();

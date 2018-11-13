@@ -10,39 +10,40 @@ package transporteperecivel;
  * @author rafaelda
  */
 public class Cliente {
-    private String nomeEmpresa;
-    private Endereco endereco;
-    private String horarioEntrega;
+    private String nomeFicticio;
+    private int id;
+    private String cnpj;
 
     public Cliente() {
-        this.nomeEmpresa = nomeEmpresa;
-        this.endereco = endereco;
-        this.horarioEntrega = horarioEntrega;
+        this.nomeFicticio = nomeFicticio;
+        this.id = id;
+        this.cnpj = cnpj;
     }
 
-    public String getNomeEmpresa() {
-        return nomeEmpresa;
+    public String getNomeFicticio() {
+        return nomeFicticio;
     }
 
-    public void setNomeEmpresa(String nomeEmpresa) {
-        this.nomeEmpresa = nomeEmpresa;
+    public void setNomeFicticio(String nomeFicticio) {
+        this.nomeFicticio = nomeFicticio;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public int getId() {
+        return id;
     }
 
-    public void setEndereco(Endereco enderecoEmpresa) {
-        this.endereco = enderecoEmpresa;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getHorarioEntrega() {
-        return horarioEntrega;
+    public String getCnpj() {
+        return cnpj;
     }
 
-    public void setHorarioEntrega(String horarioEntrega) {
-        this.horarioEntrega = horarioEntrega;
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
-    
+
+ 
     
 }

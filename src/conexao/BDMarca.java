@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Cidade;
+import transporteperecivel.Marca;
 
 /**
  *
  * @author Daniel
  */
 
-public class BDCidade {
+public class BDMarca {
 
     public synchronized void  createTable() {
         Connection c = null;
@@ -23,7 +23,7 @@ public class BDCidade {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cidade (nome VARCHAR[30], id INT);";
+            String comando = "CREATE TABLE marca (nome VARCHAR(30));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -34,7 +34,7 @@ public class BDCidade {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(Cidade cidade) {
+    public  void insertTable(Marca marca) {
     
     Connection c = null;
     Statement stmt = null;
@@ -44,7 +44,7 @@ public class BDCidade {
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO cliente (nome, id)VALUES('" + cidade.getNome() + "'," + cidade.getId() + ");"; 
+        String comando = "INSERT INTO marca (nome)VALUES('" + marca.getNome() + "');";
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -65,7 +65,7 @@ public class BDCidade {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cidade WHERE nome='" + nome +"';";
+            String comando = "DELETE FROM marca WHERE nome='" + nome +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -78,7 +78,7 @@ public class BDCidade {
     }
 
     public synchronized ArrayList selectTable() {
-        ArrayList listCidades = new ArrayList();        
+        ArrayList listMarcas = new ArrayList();        
         Connection c = null;
         Statement stmt = null;
         try {
@@ -88,12 +88,11 @@ public class BDCidade {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM cidade ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM marca ;");
             while (rs.next()) {
-                Cidade cidade = new Cidade();
-                cidade.setNome(rs.getString("nome"));
-                cidade.setId(rs.getInt("id"));              
-                listCidades.add(cidade);
+                Marca marca = new Marca();
+                marca.setNome(rs.getString("nome"));              
+                listMarcas.add(marca);
             }
             rs.close();
             stmt.close();
@@ -102,7 +101,7 @@ public class BDCidade {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Operação realizada com sucesso!!");
-        return listCidades;
+        return listMarcas;
     }
     
 }

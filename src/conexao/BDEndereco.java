@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package conexao;
 
 import java.sql.Connection;
@@ -16,6 +11,7 @@ import transporteperecivel.Endereco;
  *
  * @author Daniel
  */
+
 public class BDEndereco {
 
     public synchronized void  createTable() {
@@ -45,12 +41,11 @@ public class BDEndereco {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
-        c.setAutoCommit(false);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO cliente (rua, bairro, cidade, numero)VALUES('"
-                + endereco.getIdLogradouro() + "','" + endereco.getIdBairro() + "','" + endereco.getComplemento() + "','" + endereco.getDescricao() + "');"; 
+        String comando = "INSERT INTO endereco (idLogradouro, idBairro, complemento, descricao)VALUES("
+                + endereco.getIdLogradouro() + "," + endereco.getIdBairro() + ",'" + endereco.getComplemento() + "','" + endereco.getDescricao() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -68,11 +63,10 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
-            c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cliente WHERE rua='" + descricao +"';";
+            String comando = "DELETE FROM endereco WHERE descricao='" + descricao +"';";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -91,7 +85,7 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
-            c.setAutoCommit(false);
+            //c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             

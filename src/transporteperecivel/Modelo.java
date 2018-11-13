@@ -11,15 +11,7 @@ package transporteperecivel;
  */
 public class Modelo {
     private String nome;
-    private Marca marca;
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
+    private int idMarca;
 
     public String getNome() {
         return nome;
@@ -28,6 +20,14 @@ public class Modelo {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
     
 }
