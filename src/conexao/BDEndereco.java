@@ -23,7 +23,7 @@ public class BDEndereco {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE endereco (idLogradouro int, idBairro int, complemento varchar(80), descricao varchar(40));";
+            String comando = "CREATE TABLE endereco (idLogradouro INT, idBairro INT, complemento VARCHAR(80), descricao VARCHAR(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
