@@ -13,17 +13,17 @@ import transporteperecivel.Bairro;
  */
 
 public class BDBairro {
-
+    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE bairro (nome VARCHAR(30), id INT);";
+            String comando = "DROP TABLE IF EXISTS bairro cascade; CREATE TABLE bairro (nome VARCHAR(30), id INT);";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -40,7 +40,7 @@ public class BDBairro {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection(url, usuario, senha);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
@@ -61,7 +61,7 @@ public class BDBairro {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
@@ -83,7 +83,7 @@ public class BDBairro {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             

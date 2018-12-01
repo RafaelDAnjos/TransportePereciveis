@@ -1,21 +1,16 @@
 package transporteperecivel;
 
+import conexao.BDBairro;
 import conexao.BDEndereco;
-import conexao.DBConnection;
+import conexao.BDConnection;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-
-        DBConnection.getInstance();
-        
-        BDEndereco enderecoBD = new BDEndereco();
-        enderecoBD.createTable();
         
         
         
         
-        
-        
-}
+    }
 }

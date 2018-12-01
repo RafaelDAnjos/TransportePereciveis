@@ -8,11 +8,11 @@ import java.sql.DriverManager;
  * @author Rafael
  */
 
-public class DBConnection {
+public class BDConnection {
 
     private static Connection instance = null;        
     
-    public DBConnection() {
+    public BDConnection() {
     }
     public static synchronized Connection getInstance() {
         if (instance == null) {

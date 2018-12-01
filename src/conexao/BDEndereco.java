@@ -13,17 +13,17 @@ import transporteperecivel.Endereco;
  */
 
 public class BDEndereco {
-
+    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url,usuario,senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE endereco (idLogradouro INT, idBairro INT, complemento VARCHAR(80), descricao VARCHAR(40));";
+            String comando = "DROP TABLE IF EXISTS Endereco cascade; CREATE TABLE endereco (idLogradouro INT, idBairro INT, complemento VARCHAR(80), descricao VARCHAR(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -40,7 +40,7 @@ public class BDEndereco {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection(url , usuario, senha);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
@@ -84,7 +84,7 @@ public class BDEndereco {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url,usuario,senha);
             //c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
@@ -92,8 +92,8 @@ public class BDEndereco {
             ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
             while (rs.next()) {
                 Endereco endereco = new Endereco();
-                endereco.setIdLogradouro(rs.getInt("logradouro"));
-                endereco.setIdBairro(rs.getInt("bairro"));              
+                endereco.setIdLogradouro(rs.getInt("idlogradouro"));
+                endereco.setIdBairro(rs.getInt("idbairro"));              
                 endereco.setComplemento(rs.getString("complemento"));
                 endereco.setDescricao(rs.getString("descricao")); 
                 listEnderecos.add(endereco);
