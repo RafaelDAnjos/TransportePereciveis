@@ -18,7 +18,7 @@ import transporteperecivel.Cliente;
 public class BDClienteTest {
 
     @Test
-    public void testBDCliente() {
+    public void testInsert() {
         BDCliente bd = new BDCliente();
         bd.createTable();
 
@@ -32,7 +32,22 @@ public class BDClienteTest {
         Clientes = bd.selectTable();
                
         assertEquals("SELECT Valor cliente 1",Clientes.get(0).getNomeFicticio(), cliente1.getNomeFicticio());
-        assertEquals("SELECT Valor cliente 2",Clientes.get(1).getNomeFicticio(), cliente2.getNomeFicticio());
+        assertEquals("SELECT Valor cliente 2",Clientes.get(1).getNomeFicticio(), cliente2.getNomeFicticio()); 
+    }
+    
+    @Test
+    public void testDelete(){
+        BDCliente bd = new BDCliente();
+        bd.createTable();
+
+        Cliente cliente1 = new Cliente("Nicolas", "111111111111");
+        Cliente cliente2 = new Cliente("Pedro", "222222222222");
+
+        bd.insertTable(cliente1);
+        bd.insertTable(cliente2);
+        
+        List<Cliente> Clientes = new ArrayList();
+        Clientes = bd.selectTable();
         
         bd.updateTable("Lucas", cliente1.getCnpj(), 1);
         Clientes = bd.selectTable();
@@ -42,11 +57,26 @@ public class BDClienteTest {
                 assertEquals("UPDATE Nome cliente1", "Lucas", Clientes.get(i).getNomeFicticio());
             }
         }
+    }
+    
+    @Test
+    public void testUpdate(){
+        BDCliente bd = new BDCliente();
+        bd.createTable();
+
+        Cliente cliente1 = new Cliente("Nicolas", "111111111111");
+        Cliente cliente2 = new Cliente("Pedro", "222222222222");
+
+        bd.insertTable(cliente1);
+        bd.insertTable(cliente2);
+        
+        List<Cliente> Clientes = new ArrayList();
+        Clientes = bd.selectTable();
         
         //EXEMPLO DE DELETAR PELO NOME
         for (int i = 0; i < Clientes.size(); i++){
             //USUÁRIO QUER DELETAR O PEDRO
-            if (Clientes.get(i).getNomeFicticio().intern() == "Pedro"){
+            if ("Pedro".equals(Clientes.get(i).getNomeFicticio())){
                 bd.deleteTable(Clientes.get(i).getId());
             }
             
@@ -54,6 +84,7 @@ public class BDClienteTest {
         bd.deleteTable(1);
         
         Clientes = bd.selectTable();
-        assertEquals("DELETE Deletar clientes", 0, Clientes.size());    
-    }   
+        assertEquals("DELETE Deletar clientes", 0, Clientes.size());  
+    }
+    
 }
