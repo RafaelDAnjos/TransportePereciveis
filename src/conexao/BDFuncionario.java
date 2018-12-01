@@ -13,17 +13,17 @@ import transporteperecivel.Funcionario;
  */
 
 public class BDFuncionario {
-
+    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE funcionario (nome VARCHAR(30), cpf VARCHAR(12), senha VARCHAR(20), cargaHoraria VARCHAR(10), id INT);";
+            String comando = "DROP TABLE IF EXISTS funcionario cascade; CREATE TABLE funcionario (nome VARCHAR(30), cpf VARCHAR(12), senha VARCHAR(20), cargaHoraria VARCHAR(10), id Serial);";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -40,12 +40,12 @@ public class BDFuncionario {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection(url, usuario, senha);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO funcionario (nome, cpf, senha, cargaHoraria, id)VALUES('"
-                + funcionario.getNome() + "','" + funcionario.getCpf() + "','" + funcionario.getSenha() + "','" + funcionario.getCargaHoraria() + "'," + funcionario.getId() + ");"; 
+        String comando = "INSERT INTO funcionario (nome, cpf, senha, cargaHoraria)VALUES('"
+                + funcionario.getNome() + "','" + funcionario.getCpf() + "','" + funcionario.getSenha() + "','"  + funcionario.getCargaHoraria() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -60,15 +60,18 @@ public class BDFuncionario {
     public  void deleteTable(String cpf) {
         Connection c = null;
         Statement stmt = null;
+        String comando = null;
+        System.out.print(c);
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
+             System.out.print("AQUI");
+          
+            comando = "delete from funcionario where cpf = '" +cpf+"';";
             
-            String comando = "DELETE FROM funcionario WHERE cpf='" + cpf +"';";
-            
-            stmt.executeUpdate(comando);            
+            stmt.executeUpdate(comando);   
             stmt.close();
             c.close();
         } catch (Exception e) {
@@ -84,7 +87,7 @@ public class BDFuncionario {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url, usuario, senha);
             //c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
@@ -108,5 +111,35 @@ public class BDFuncionario {
         System.out.println("Operação realizada com sucesso!!");
         return listFuncionarios;
     }
-    
+        public synchronized ArrayList selectTableWhere(String cpf) {
+        ArrayList listFuncionarios = new ArrayList();        
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection(url, usuario, senha);
+            //c.setAutoCommit(false);
+            System.out.println("Banco de dados aberto com sucesso!!");
+            stmt = c.createStatement();
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM funcionario where cpf = "+cpf+ ";");
+            while (rs.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setNome(rs.getString("nome"));
+                funcionario.setCpf(rs.getString("cpf"));
+                funcionario.setSenha(rs.getString("senha"));
+                funcionario.setCargaHoraria(rs.getString("cargaHoraria"));
+                funcionario.setId(rs.getInt("id")); 
+                listFuncionarios.add(funcionario);
+            }
+            rs.close();
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + e.getMessage());            
+        }
+        System.out.println("Operação realizada com sucesso!!");
+        
+        return listFuncionarios;
+    }
 }

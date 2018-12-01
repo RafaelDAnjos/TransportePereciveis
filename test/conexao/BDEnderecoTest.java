@@ -43,7 +43,7 @@ public class BDEnderecoTest {
      * Teste da classe BDEndereco
      */
     @Test    
-    public void testCodigo()
+    public void testInsert()
     {
         BDConnection.getInstance();
         Endereco endereco = new Endereco();
@@ -58,5 +58,22 @@ public class BDEnderecoTest {
         
         assertEquals(endereco.getDescricao(), listEnd.get(0).getDescricao());
         assertEquals(endereco.getComplemento(), listEnd.get(0).getComplemento());
+    }
+    
+        @Test
+    public void testDeletar()
+    {
+        BDConnection.getInstance();
+        Endereco endereco = new Endereco();
+        endereco.setDescricao("Tabuazeiro");
+        endereco.setComplemento(" ");
+        BDEndereco enderecoBD = new BDEndereco();
+        enderecoBD.createTable();
+        
+        enderecoBD.insertTable(endereco);
+        
+        enderecoBD.deleteTable(endereco.getDescricao());
+        ArrayList <Endereco> listEnd = enderecoBD.selectTable();
+        assertEquals(0, listEnd.size());
     }
 }

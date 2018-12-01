@@ -13,13 +13,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import transporteperecivel.Bairro;
-import transporteperecivel.Endereco;
 
 /**
  *
  * @author rafae
  */
 public class BDBairroTest {
+    
+    
     
     public BDBairroTest() {
     }
@@ -44,9 +45,9 @@ public class BDBairroTest {
      * Test of createTable method, of class BDBairro.
      */
     @Test
-    public void testCodigo()
+    public void testInsert()
     {
-            BDConnection.getInstance();
+        BDConnection.getInstance();
         
         Bairro bairro = new Bairro();
         bairro.setNome("Tabuazeiro");
@@ -58,8 +59,24 @@ public class BDBairroTest {
         
         ArrayList <Bairro> listBai = BairroBD.selectTable();
         assertEquals(bairro.getNome(), listBai.get(0).getNome());
+                
+    }
+    
+    @Test
+    public void testDeletar()
+    {
+        BDConnection.getInstance();
+        Bairro bairro = new Bairro();
+        bairro.setNome("Tabuazeiro");
         
-
+        BDBairro BairroBD = new BDBairro();
+        BairroBD.createTable();
         
+        BairroBD.insertTable(bairro);
+        
+        BairroBD.deleteTable(bairro.getNome());
+        
+        ArrayList <Bairro> listBai = BairroBD.selectTable();
+        assertEquals(0, listBai.size());
     }
 }

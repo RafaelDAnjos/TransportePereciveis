@@ -62,7 +62,7 @@ public class BDEndereco {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
