@@ -7,4 +7,4 @@
 [PMC](https://github.com/RafaelDAnjos/TransportePereciveis/blob/master/Andreas%2C%20Daniel%2C%20Nicolas%2C%20RafaelAnjos.pdf)
 
 ### DIAGRAMA DE CLASSES<br>
-[DIAGRAMA DE CLASSE](https://github.com/RafaelDAnjos/TransportePereciveis/blob/master/classe.png)
+[DIAGRAMA DE CLASSE](https://github.com/RafaelDAnjos/TransportePereciveis/blob/master/Class%20Diagram0.png)
