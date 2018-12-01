@@ -10,9 +10,8 @@ public class Cliente {
     private int id;
     private String cnpj;
 
-    public Cliente() {
+    public Cliente(String nomeFicticio, String cnpj) {
         this.nomeFicticio = nomeFicticio;
-        this.id = id;
         this.cnpj = cnpj;
     }
 
@@ -39,6 +38,7 @@ public class Cliente {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+
 
  
     
