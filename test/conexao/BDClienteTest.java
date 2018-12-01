@@ -18,7 +18,7 @@ import transporteperecivel.Cliente;
 public class BDClienteTest {
 
     @Test
-    public void testInsert() {
+    public void testBDCliente() {
         BDCliente bd = new BDCliente();
         bd.createTable();
 
