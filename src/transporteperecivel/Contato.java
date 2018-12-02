@@ -13,6 +13,19 @@ public class Contato {
 
     private String telefone;
     private int id;
+    private int fkfuncionario;
+
+    public Contato(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public int getFkfuncionario() {
+        return fkfuncionario;
+    }
+
+    public void setFkfuncionario(int fkfuncionario) {
+        this.fkfuncionario = fkfuncionario;
+    }
 
     public int getId() {
         return id;
@@ -20,10 +33,6 @@ public class Contato {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Contato(String telefone) {
-        this.telefone = telefone;
     }
 
     public String getTelefone() {

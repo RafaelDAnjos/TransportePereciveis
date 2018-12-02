@@ -25,7 +25,7 @@ public class BDCidade {
             
             String sql = "DROP TABLE IF EXISTS cidade CASCADE; CREATE TABLE cidade ("
                     + "nome VARCHAR(50),"
-                    + "id SERIAL"
+                    + "id SERIAL PRIMARY KEY"
                     + ");";
             
             stmt.executeUpdate(sql);
@@ -81,7 +81,7 @@ public class BDCidade {
         System.out.println("Dado deletado com sucesso!!");
     }
     
-        public  void updateTable(String cidade, int id) {
+        public  void updateTable(Cidade cidade, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -90,7 +90,7 @@ public class BDCidade {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE cidade SET nome = '" + cidade + "' WHERE id =" + id + ";";
+            String sql = "UPDATE cidade SET nome = '" + cidade.getNome() + "' WHERE id =" + id + ";";
                     
             
             stmt.executeUpdate(sql);            
