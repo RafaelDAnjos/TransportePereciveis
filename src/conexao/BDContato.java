@@ -100,11 +100,11 @@ public class BDContato {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado deletado com sucesso!!");
+        System.out.println("Dado atualizado com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
-        ArrayList listClientes = new ArrayList();        
+        ArrayList listContatos = new ArrayList();        
         Connection c = null;
         Statement stmt = null;
         try {
@@ -117,7 +117,7 @@ public class BDContato {
             while (rs.next()) {
                 Contato contato = new Contato(rs.getString("telefone"));
                 contato.setId(rs.getInt("id"));              
-                listClientes.add(contato);
+                listContatos.add(contato);
             }
             rs.close();
             stmt.close();
@@ -126,7 +126,7 @@ public class BDContato {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Dados selecionados com sucesso!!");
-        return listClientes;
+        return listContatos;
     }
     
     

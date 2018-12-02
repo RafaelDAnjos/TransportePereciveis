@@ -19,13 +19,16 @@ public class BDCidade {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE cidade (nome VARCHAR[30], id INT);";
+            String sql = "DROP TABLE IF EXISTS cidade CASCADE; CREATE TABLE cidade ("
+                    + "nome VARCHAR(50),"
+                    + "id SERIAL"
+                    + ");";
             
-            stmt.executeUpdate(comando);
+            stmt.executeUpdate(sql);
             stmt.close();
             c.close();
         } catch (Exception e) {
@@ -40,41 +43,64 @@ public class BDCidade {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO cliente (nome, id)VALUES('" + cidade.getNome() + "'," + cidade.getId() + ");"; 
+        String sql = "INSERT INTO cidade (nome) "
+                + "VALUES('" + cidade.getNome() + "');"; 
         
-        stmt.executeUpdate(comando);
+        stmt.executeUpdate(sql);
         stmt.close();
         //c.commit();
         c.close();
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
+    System.out.println("Dado inserido com sucesso!!");
     }
 
-    public  void deleteTable(String nome) {
+    public  void deleteTable(int id) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM cidade WHERE nome='" + nome +"';";
+            String sql = "DELETE FROM cidade WHERE id=" + id +";";
             
-            stmt.executeUpdate(comando);            
+            stmt.executeUpdate(sql);            
             stmt.close();
             c.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
+        System.out.println("Dado deletado com sucesso!!");
+    }
+    
+        public  void updateTable(String cidade, int id) {
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            System.out.println("Banco de dados aberto com sucesso!!");
+            stmt = c.createStatement();
+            
+            String sql = "UPDATE cidade SET nome = '" + cidade + "' WHERE id =" + id + ";";
+                    
+            
+            stmt.executeUpdate(sql);            
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + 
+                    e.getMessage());            
+        }
+        System.out.println("Dado atualizado com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -83,15 +109,13 @@ public class BDCidade {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
-            //c.setAutoCommit(false);
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM cidade ;");
             while (rs.next()) {
-                Cidade cidade = new Cidade();
-                cidade.setNome(rs.getString("nome"));
+                Cidade cidade = new Cidade(rs.getString("nome"));
                 cidade.setId(rs.getInt("id"));              
                 listCidades.add(cidade);
             }
@@ -101,8 +125,9 @@ public class BDCidade {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
+        System.out.println("Dados selecionados com sucesso!!");
         return listCidades;
     }
+    
     
 }
