@@ -54,12 +54,13 @@ public class BDPedidoTest {
         pedidos = bd.selectTable();
         assertEquals("UPDATE pedido", 30, pedidos.get(0).getNumeroBandas());
 
-        bd.updateTable(50, pedido1.getDataDeEntrega(), 1);
+        pedido1.setNumeroBandas(100);
+        bd.updateTable(pedido1, 1);
         pedidos = bd.selectTable();
 
         for (int i = 0; i < pedidos.size(); i++) {
             if (pedidos.get(i).getId() == 1) {
-                assertEquals("UPDATE numeroBandas pedido1", 50, pedidos.get(i).getNumeroBandas());
+                assertEquals("UPDATE numeroBandas pedido1", 100, pedidos.get(i).getNumeroBandas());
             }
         }
     }

@@ -9,10 +9,28 @@ public class Pedido {
     private int numeroBandas;
     private String dataDeEntrega;
     private int id;
+    private int fkcliente;
+    private int fkfuncionario;
     
     public Pedido(int numeroBandas, String dataDeEntrega){
         this.numeroBandas = numeroBandas;
         this.dataDeEntrega = dataDeEntrega;
+    }
+
+    public int getFkcliente() {
+        return fkcliente;
+    }
+
+    public void setFkcliente(int fkcliente) {
+        this.fkcliente = fkcliente;
+    }
+
+    public int getFkfuncionario() {
+        return fkfuncionario;
+    }
+
+    public void setFkfuncionario(int fkfuncionario) {
+        this.fkfuncionario = fkfuncionario;
     }
 
     public int getNumeroBandas() {

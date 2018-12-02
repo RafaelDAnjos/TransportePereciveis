@@ -25,7 +25,7 @@ public class BDCliente {
             
             String sql = "DROP TABLE IF EXISTS cliente cascade; CREATE TABLE cliente ("
                     + "nomeFicticio VARCHAR(50),"
-                    + "id SERIAL,"
+                    + "id SERIAL PRIMARY KEY,"
                     + "cnpj VARCHAR(12)"
                     + ");";
             
@@ -82,7 +82,7 @@ public class BDCliente {
         System.out.println("Dado deletado com sucesso!!");
     }
     
-        public  void updateTable(String nomeFicticio, String cnpj, int id) {
+        public  void updateTable(Cliente cliente, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -91,8 +91,8 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE cliente SET nomeficticio = '" + nomeFicticio + "',"
-                    + "cnpj = '" + cnpj + "' WHERE id =" + id + ";";
+            String sql = "UPDATE cliente SET nomeficticio = '" + cliente.getNomeFicticio() + "',"
+                    + "cnpj = '" + cliente.getCnpj() + "' WHERE id =" + id + ";";
             
             stmt.executeUpdate(sql);            
             stmt.close();

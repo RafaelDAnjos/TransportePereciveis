@@ -26,7 +26,7 @@ public class BDBandaPorco {
             String sql = "DROP TABLE IF EXISTS bandaporco cascade; CREATE TABLE bandaporco ("
                     + "dataAbate DATE,"
                     + "quantidade INT,"
-                    + "id SERIAL"
+                    + "id SERIAL PRIMARY KEY"
                     + ");";
             
             stmt.executeUpdate(sql);
@@ -82,7 +82,7 @@ public class BDBandaPorco {
         System.out.println("Dado deletado com sucesso!!");
     }
     
-        public  void updateTable(int qnt, String dataAbate, int id) {
+        public  void updateTable(BandaPorco banda, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -91,7 +91,8 @@ public class BDBandaPorco {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE bandaporco SET dataabate = '" + dataAbate + "', quantidade= " + qnt 
+            String sql = "UPDATE bandaporco SET dataabate = '" 
+                    + banda.getDataDeAbate() + "', quantidade= " + banda.getQuantidade()
                     + " WHERE id =" + id + ";";
             
             stmt.executeUpdate(sql);            

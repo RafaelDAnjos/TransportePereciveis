@@ -25,7 +25,7 @@ public class BDContato {
             
             String sql = "DROP TABLE IF EXISTS contato CASCADE; CREATE TABLE contato ("
                     + "telefone VARCHAR(12),"
-                    + "id SERIAL"
+                    + "id SERIAL PRIMARY KEY, fkfuncionario SERIAL"
                     + ");";
             
             stmt.executeUpdate(sql);
@@ -47,8 +47,8 @@ public class BDContato {
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String sql = "INSERT INTO contato (telefone) "
-                + "VALUES('" + telefone.getTelefone() + "');"; 
+        String sql = "INSERT INTO contato (telefone, fkfuncionario) "
+                + "VALUES('" + telefone.getTelefone() + "', " + telefone.getFkfuncionario() + ");"; 
         
         stmt.executeUpdate(sql);
         stmt.close();
@@ -81,7 +81,7 @@ public class BDContato {
         System.out.println("Dado deletado com sucesso!!");
     }
     
-        public  void updateTable(String telefone, int id) {
+        public  void updateTable(Contato contato, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -90,7 +90,7 @@ public class BDContato {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE contato SET telefone = '" + telefone + "' WHERE id =" + id + ";";
+            String sql = "UPDATE contato SET telefone = '" + contato.getTelefone() + "', fkfuncionario = " + contato.getFkfuncionario() + "WHERE id =" + id + ";";
                     
             
             stmt.executeUpdate(sql);            
@@ -116,6 +116,7 @@ public class BDContato {
             ResultSet rs = stmt.executeQuery("SELECT * FROM contato ;");
             while (rs.next()) {
                 Contato contato = new Contato(rs.getString("telefone"));
+                contato.setFkfuncionario(rs.getInt("fkfuncionario"));
                 contato.setId(rs.getInt("id"));              
                 listContatos.add(contato);
             }
