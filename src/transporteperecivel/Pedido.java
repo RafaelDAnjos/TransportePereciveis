@@ -9,6 +9,11 @@ public class Pedido {
     private int numeroBandas;
     private String dataDeEntrega;
     private int id;
+    
+    public Pedido(int numeroBandas, String dataDeEntrega){
+        this.numeroBandas = numeroBandas;
+        this.dataDeEntrega = dataDeEntrega;
+    }
 
     public int getNumeroBandas() {
         return numeroBandas;
