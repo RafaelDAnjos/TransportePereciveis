@@ -23,7 +23,7 @@ public class BDPedido {
             stmt = c.createStatement();
 
             String comando = "DROP TABLE IF EXISTS pedido CASCADE;"
-                    + "CREATE TABLE pedido (numeroBandas INT, dataDeEntrega VARCHAR(10), id SERIAL);";
+                    + "CREATE TABLE pedido (numeroBandas INT, dataDeEntrega DATE, id SERIAL);";
 
             stmt.executeUpdate(comando);
             stmt.close();

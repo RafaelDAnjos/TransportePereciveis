@@ -9,6 +9,11 @@ public class BandaPorco {
     private String dataDeAbate;
     private int quantidade;
     private int id;
+    
+    public BandaPorco(String dataDeAbate, int qnt){
+        this.dataDeAbate = dataDeAbate;
+        quantidade = qnt;
+    }
 
     public String getDataDeAbate() {
         return dataDeAbate;

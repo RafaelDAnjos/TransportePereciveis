@@ -36,7 +36,7 @@ public class BDPedidoTest {
         pedidos = bd.selectTable();
 
         assertEquals("SELECT pedido1", 30, pedidos.get(0).getNumeroBandas());
-        assertEquals("SELECT pedido2", "2018/12/17", pedidos.get(1).getDataDeEntrega());
+        assertEquals("SELECT pedido2", "2018-12-17", pedidos.get(1).getDataDeEntrega());
     }
 
     @Test

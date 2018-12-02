@@ -19,13 +19,17 @@ public class BDBandaPorco {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE bandaPorco (dataDeAbate VARCHAR(12), quantidade INT, id INT);";
+            String sql = "DROP TABLE IF EXISTS bandaporco cascade; CREATE TABLE bandaporco ("
+                    + "dataAbate DATE,"
+                    + "quantidade INT,"
+                    + "id SERIAL"
+                    + ");";
             
-            stmt.executeUpdate(comando);
+            stmt.executeUpdate(sql);
             stmt.close();
             c.close();
         } catch (Exception e) {
@@ -34,68 +38,87 @@ public class BDBandaPorco {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(BandaPorco bandaPorco) {
+    public  void insertTable(BandaPorco banda) {
     
     Connection c = null;
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO bandaPorco (dataDeAbate, quantidade, id)VALUES('"
-                + bandaPorco.getDataDeAbate() + "'," + bandaPorco.getQuantidade() + "," + bandaPorco.getId() + ");"; 
+        String sql = "INSERT INTO bandaporco (dataAbate, quantidade) "
+                + "VALUES('"+ banda.getDataDeAbate() + "', " + banda.getQuantidade() + ");"; 
         
-        stmt.executeUpdate(comando);
+        stmt.executeUpdate(sql);
         stmt.close();
         //c.commit();
         c.close();
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
+    System.out.println("Dado inserido com sucesso!!");
     }
 
-    public  void deleteTable(String dataDeAbate) {
+    public  void deleteTable(int id) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM bandaPorco WHERE dataDeAbate='" + dataDeAbate +"';";
+            String sql = "DELETE FROM bandaporco WHERE id=" + id +";";
             
-            stmt.executeUpdate(comando);            
+            stmt.executeUpdate(sql);            
             stmt.close();
             c.close();
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
+        System.out.println("Dado deletado com sucesso!!");
     }
-
-    public synchronized ArrayList selectTable() {
-        ArrayList listBandaPorco = new ArrayList();        
+    
+        public  void updateTable(int qnt, String dataAbate, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
-            //c.setAutoCommit(false);
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM bandaPorco ;");
+            String sql = "UPDATE bandaporco SET dataabate = '" + dataAbate + "', quantidade= " + qnt 
+                    + " WHERE id =" + id + ";";
+            
+            stmt.executeUpdate(sql);            
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + 
+                    e.getMessage());            
+        }
+        System.out.println("Dado deletado com sucesso!!");
+    }
+
+    public synchronized ArrayList selectTable() {
+        ArrayList listBandas = new ArrayList();        
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            System.out.println("Banco de dados aberto com sucesso!!");
+            stmt = c.createStatement();
+            
+            ResultSet rs = stmt.executeQuery("SELECT * FROM bandaporco ;");
             while (rs.next()) {
-                BandaPorco bandaPorco = new BandaPorco();
-                bandaPorco.setDataDeAbate(rs.getString("dataDeAbate"));
-                bandaPorco.setQuantidade(rs.getInt("quantidade"));              
-                bandaPorco.setId(rs.getInt("id")); 
-                listBandaPorco.add(bandaPorco);
+                BandaPorco bandaporco = new BandaPorco(rs.getString("dataabate"), rs.getInt("quantidade"));
+                bandaporco.setId(rs.getInt("id"));              
+                listBandas.add(bandaporco);
             }
             rs.close();
             stmt.close();
@@ -103,8 +126,9 @@ public class BDBandaPorco {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
-        return listBandaPorco;
+        System.out.println("Dados selecionados com sucesso!!");
+        return listBandas;
     }
+    
     
 }
