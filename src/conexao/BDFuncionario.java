@@ -57,7 +57,7 @@ public class BDFuncionario {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String cpf) {
+    public  void deleteTable(int id) {
         Connection c = null;
         Statement stmt = null;
         String comando = null;
@@ -67,9 +67,9 @@ public class BDFuncionario {
             c = DriverManager.getConnection(url, usuario, senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
-             System.out.print("AQUI");
-          
-            comando = "delete from funcionario where cpf = '" +cpf+"';";
+             
+            System.out.println("açucar "+id);
+            comando = "delete from funcionario where id = " +id+";";
             
             stmt.executeUpdate(comando);   
             stmt.close();

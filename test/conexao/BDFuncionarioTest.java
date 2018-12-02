@@ -80,7 +80,7 @@ public class BDFuncionarioTest {
         
         
         
-        funcionarioBD.deleteTable(funcionario.getCpf());
+        funcionarioBD.deleteTable(1);
        ArrayList <Funcionario> listFuncionario = funcionarioBD.selectTable();
        
         
