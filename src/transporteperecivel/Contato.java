@@ -11,7 +11,16 @@ package transporteperecivel;
  */
 public class Contato {
 
-    String telefone;
+    private String telefone;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Contato(String telefone) {
         this.telefone = telefone;

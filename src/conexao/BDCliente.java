@@ -70,7 +70,7 @@ public class BDCliente {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "DELETE FROM cliente WHERE id='" + id +"';";
+            String sql = "DELETE FROM cliente WHERE id=" + id +";";
             
             stmt.executeUpdate(sql);            
             stmt.close();
