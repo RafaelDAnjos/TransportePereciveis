@@ -6,25 +6,27 @@ package transporteperecivel;
  */
 
 public class Endereco {
-    private int idLogradouro;
-    private int idBairro;
+    private int id;
+    private int fk_logradouro_id;
+    private int fk_cliente_id;
+    private int numero;
     private String complemento;
-    private String descricao;
+    private String nome;
 
-    public int getIdLogradouro() {
-        return idLogradouro;
+    public int getFk_logradouro_id() {
+        return fk_logradouro_id;
     }
 
-    public void setIdLogradouro(int idLogradouro) {
-        this.idLogradouro = idLogradouro;
+    public void setFk_logradouro_id(int idLogradouro) {
+        this.fk_logradouro_id = idLogradouro;
     }
 
-    public int getIdBairro() {
-        return idBairro;
+    public int getFk_cliente_id() {
+        return fk_cliente_id;
     }
 
-    public void setIdBairro(int idBairro) {
-        this.idBairro = idBairro;
+    public void setFk_cliente_id(int idBairro) {
+        this.fk_cliente_id = idBairro;
     }
 
     public String getComplemento() {
@@ -35,14 +37,29 @@ public class Endereco {
         this.complemento = complemento;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setNome(String descricao) {
+        this.nome = descricao;
     }
 
- 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
+    public int getNumero()
+    {
+        return numero;
+    }
+    
+    public void setNumero(int numero)
+    {
+        this.numero = numero;
+    }
 }

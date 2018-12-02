@@ -79,4 +79,26 @@ public class BDBairroTest {
         ArrayList <Bairro> listBai = BairroBD.selectTable();
         assertEquals(0, listBai.size());
     }
+    
+        @Test
+    public void testUpdate()
+    {
+        BDConnection.getInstance();
+        
+        Bairro bairro = new Bairro();
+        bairro.setNome("Tabuazeiro");
+        
+        BDBairro BairroBD = new BDBairro();
+        BairroBD.createTable();
+        
+        BairroBD.insertTable(bairro);
+        
+        bairro.setId(0);
+        bairro.setNome("Teste");
+        
+        BairroBD.updateTable(bairro);
+        ArrayList <Bairro> listBai = BairroBD.selectTable();
+        assertEquals(bairro.getNome(), listBai.get(0).getNome());
+                
+    }
 }

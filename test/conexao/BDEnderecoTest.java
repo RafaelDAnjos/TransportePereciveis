@@ -47,8 +47,11 @@ public class BDEnderecoTest {
     {
         BDConnection.getInstance();
         Endereco endereco = new Endereco();
-        endereco.setDescricao("Bairro Tabuazeiro");
+        endereco.setNome("Bairro Tabuazeiro");
         endereco.setComplemento(" ");
+        endereco.setFk_cliente_id(1);
+        endereco.setFk_logradouro_id(1);
+        endereco.setNumero(40);
         BDEndereco enderecoBD = new BDEndereco();
         enderecoBD.createTable();
         
@@ -56,7 +59,7 @@ public class BDEnderecoTest {
         
         ArrayList <Endereco> listEnd = enderecoBD.selectTable();
         
-        assertEquals(endereco.getDescricao(), listEnd.get(0).getDescricao());
+        assertEquals(endereco.getNome(), listEnd.get(0).getNome());
         assertEquals(endereco.getComplemento(), listEnd.get(0).getComplemento());
     }
     
@@ -65,15 +68,44 @@ public class BDEnderecoTest {
     {
         BDConnection.getInstance();
         Endereco endereco = new Endereco();
-        endereco.setDescricao("Tabuazeiro");
+        endereco.setNome("Tabuazeiro");
         endereco.setComplemento(" ");
         BDEndereco enderecoBD = new BDEndereco();
         enderecoBD.createTable();
         
         enderecoBD.insertTable(endereco);
-        
-        enderecoBD.deleteTable(endereco.getDescricao());
         ArrayList <Endereco> listEnd = enderecoBD.selectTable();
+        enderecoBD.deleteTable(listEnd.get(0).getId());
+        listEnd = enderecoBD.selectTable();
         assertEquals(0, listEnd.size());
     }
+    
+        @Test
+    public void testUpdate()
+    {
+        BDConnection.getInstance();
+        Endereco endereco = new Endereco();
+        endereco.setNome("Bairro Tabuazeiro");
+        endereco.setComplemento(" ");
+        endereco.setFk_cliente_id(1);
+        endereco.setFk_logradouro_id(1);
+        endereco.setNumero(40);
+        BDEndereco enderecoBD = new BDEndereco();
+        enderecoBD.createTable();
+        
+        enderecoBD.insertTable(endereco);
+        
+        endereco.setId(1);
+        endereco.setNome("Teste");
+        enderecoBD.updateTable(endereco);
+        
+        ArrayList <Endereco> listEnd = enderecoBD.selectTable();
+        System.out.println(listEnd.size());
+        
+        assertEquals(endereco.getNome(), listEnd.get(0).getNome());
+        assertEquals(endereco.getComplemento(), listEnd.get(0).getComplemento());
+    
+    }
 }
+
+

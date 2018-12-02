@@ -79,11 +79,34 @@ public class BDFuncionarioTest {
         funcionarioBD.insertTable(funcionario);
         
         
-        
         funcionarioBD.deleteTable(1);
-       ArrayList <Funcionario> listFuncionario = funcionarioBD.selectTable();
-       
+        ArrayList <Funcionario> listFuncionario = funcionarioBD.selectTable();
         
         assertEquals(0,listFuncionario.size());
+    }
+
+    @Test
+    public void testUpdate()
+    {
+        BDConnection.getInstance();
+        Funcionario funcionario = new Funcionario();
+        funcionario.setNome("Andreas");
+        funcionario.setCargaHoraria("08:00:00");
+        funcionario.setCpf("123");
+        funcionario.setSenha("123");
+        BDFuncionario funcionarioBD = new BDFuncionario();
+        funcionarioBD.createTable();
+        
+        funcionarioBD.insertTable(funcionario);
+        
+        funcionario.setIdfuncionario(1);
+        funcionario.setNome("teste");
+        funcionarioBD.updateTable(funcionario);
+        ArrayList <Funcionario> listFun = funcionarioBD.selectTable();
+
+        assertEquals(funcionario.getNome(), listFun.get(0).getNome());
+        assertEquals(funcionario.getCpf(), listFun.get(0).getCpf());
+        assertEquals(funcionario.getSenha(), listFun.get(0).getSenha());
+        assertEquals(funcionario.getCargaHoraria(), listFun.get(0).getCargaHoraria());
     }
 }

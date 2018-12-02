@@ -1,5 +1,6 @@
 package transporteperecivel;
 
+
 /**
  *
  * @author rafaelda
@@ -10,7 +11,7 @@ public class Funcionario {
     private String cpf;
     private String senha;
     private String cargaHoraria;
-    private int id;
+    private int idfuncionario;
 
     public String getNome() {
         return nome;
@@ -44,12 +45,12 @@ public class Funcionario {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public int getId() {
-        return id;
+    public int getIdfuncionario() {
+        return idfuncionario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdfuncionario(int id) {
+        this.idfuncionario = id;
     }
     
 

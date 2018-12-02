@@ -104,4 +104,25 @@ public class BDBairro {
         return listBairros;
     }
     
+    public  void updateTable(Bairro bairro) {
+        Connection c = null;
+        Statement stmt = null;
+        try {
+            Class.forName("org.postgresql.Driver");
+            c = DriverManager.getConnection(url,usuario,senha);
+            System.out.println("Banco de dados aberto com sucesso!!");
+            stmt = c.createStatement();
+            
+            String sql = "UPDATE bairro SET nome = '" + bairro.getNome() + "' where id = " +bairro.getId() +";";
+            
+            stmt.executeUpdate(sql);            
+            stmt.close();
+            c.close();
+        } catch (Exception e) {
+            System.err.println(e.getClass().getName() + ": " + 
+                    e.getMessage());            
+        }
+        System.out.println("Dado alterado com sucesso!!");
+    }
+    
 }
