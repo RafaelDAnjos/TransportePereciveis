@@ -10,13 +10,12 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Compoe;
-
+import transporteperecivel.Adiciona;
 /**
  *
- * @author Andreas
+ * @author rafae
  */
-public class BDCompoe {
+public class BDAdiciona {
     String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
@@ -27,9 +26,9 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DROP TABLE IF EXISTS compoe cascade; CREATE TABLE Compoe (\n" +
-            "    fk_Endereco_ID serial,\n" +
-            "    fk_Bairro_ID serial\n" +
+            String comando = "DROP TABLE IF EXISTS adiciona cascade; CREATE TABLE adiciona (\n" +
+            "    fk_Funcionario_IDfuncionario serial,\n" +
+            "    fk_BandaPorco_ID serial\n" +
             ");";
             
             stmt.executeUpdate(comando);
@@ -41,7 +40,8 @@ public class BDCompoe {
         System.out.println("Tabela criada com sucesso!!");
     }
 
-    public  void insertTable(Compoe compoe) {
+
+public  void insertTable(Adiciona adiciona) {
     
     Connection c = null;
     Statement stmt = null;
@@ -51,7 +51,7 @@ public class BDCompoe {
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO compoe(fk_bairro_id, fk_endereco_id)VALUES(" + compoe.getFk_Bairro_ID()+ "," + compoe.getFk_Endereco_ID()+ ");"; 
+        String comando = "INSERT INTO adiciona(fk_BandaPorco_id, Fk_Funcionario_IDfuncionario)VALUES(" + adiciona.getFk_BandaPorco_ID()+ "," + adiciona.getFk_Funcionario_IDfuncionario()+ ");"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -62,9 +62,9 @@ public class BDCompoe {
     }
     System.out.println("Operação realizada com sucesso!!");
     }
-    
-    public synchronized ArrayList selectTable() {
-        ArrayList listCompoe = new ArrayList();        
+
+public synchronized ArrayList selectTable() {
+        ArrayList listAdiciona = new ArrayList();        
         Connection c = null;
         Statement stmt = null;
         try {
@@ -73,12 +73,12 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Compoe ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Adiciona ;");
             while (rs.next()) {
-                Compoe compoe = new Compoe();          
-                compoe.setFk_Bairro_ID(rs.getInt("fk_bairro_id"));
-                compoe.setFk_Endereco_ID(rs.getInt("fk_endereco_id")); 
-                listCompoe.add(compoe);
+                Adiciona adiciona = new Adiciona();          
+                adiciona.setFk_BandaPorco_ID(rs.getInt("fk_bandaporco_id"));
+                adiciona.setFk_Funcionario_IDfuncionario(rs.getInt("fk_funcionario_idFuncionario")); 
+                listAdiciona.add(adiciona);
             }
             rs.close();
             stmt.close();
@@ -87,9 +87,9 @@ public class BDCompoe {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
         System.out.println("Operação realizada com sucesso!!");
-        return listCompoe;
+        return listAdiciona;
     }
-    
+
     public  void deleteTable(int id) {
         Connection c = null;
         Statement stmt = null;
@@ -99,7 +99,7 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM compoe WHERE fk_endereco_id=" + id +";";
+            String comando = "DELETE FROM adiciona WHERE fk_bandaporco_id=" + id +";";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -111,7 +111,7 @@ public class BDCompoe {
         System.out.println("Operação realizada com sucesso!!");
     }
     
-    public  void updateTable(Compoe compoe) {
+    public  void updateTable(Adiciona adiciona) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -120,8 +120,8 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE compoe SET Fk_Bairro_ID = " + compoe.getFk_Bairro_ID()+", Fk_Endereco_ID =" +compoe.getFk_Endereco_ID()+ " where fk_Endereco_ID = " + compoe.getFk_Endereco_ID()+";";
-
+            String sql = "UPDATE adiciona SET Fk_funcionario_IDfuncionario = " + adiciona.getFk_Funcionario_IDfuncionario()+", Fk_bandaporco_ID =" +adiciona.getFk_BandaPorco_ID()+ " where fk_BandaPorco_ID = " + adiciona.getFk_BandaPorco_ID()+";";
+            System.out.println(sql);
             stmt.executeUpdate(sql);            
             stmt.close();
             c.close();
@@ -131,7 +131,5 @@ public class BDCompoe {
         }
         System.out.println("Dado alterado com sucesso!!");
     }
-    
-
 
 }

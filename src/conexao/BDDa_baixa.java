@@ -10,13 +10,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import transporteperecivel.Compoe;
+import transporteperecivel.Da_baixa;
 
 /**
  *
- * @author Andreas
+ * @author rafae
  */
-public class BDCompoe {
+public class BDDa_baixa {
     String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
@@ -27,9 +27,9 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DROP TABLE IF EXISTS compoe cascade; CREATE TABLE Compoe (\n" +
-            "    fk_Endereco_ID serial,\n" +
-            "    fk_Bairro_ID serial\n" +
+            String comando = "DROP TABLE IF EXISTS Da_baixa cascade; CREATE TABLE Da_baixa (\n" +
+            "    fk_BandaPorco_ID serial,\n" +
+            "    fk__Pedido_ID serial\n" +
             ");";
             
             stmt.executeUpdate(comando);
@@ -40,8 +40,8 @@ public class BDCompoe {
         }
         System.out.println("Tabela criada com sucesso!!");
     }
-
-    public  void insertTable(Compoe compoe) {
+    
+    public  void insertTable(Da_baixa da_baixa) {
     
     Connection c = null;
     Statement stmt = null;
@@ -51,7 +51,7 @@ public class BDCompoe {
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO compoe(fk_bairro_id, fk_endereco_id)VALUES(" + compoe.getFk_Bairro_ID()+ "," + compoe.getFk_Endereco_ID()+ ");"; 
+        String comando = "INSERT INTO da_baixa(fk_bandaporco_id, fk__pedido_id)VALUES(" + da_baixa.getFk_BandaPorco_ID()+ "," + da_baixa.getFk__Pedido_ID()+ ");"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -73,12 +73,12 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            ResultSet rs = stmt.executeQuery("SELECT * FROM Compoe ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM da_baixa ;");
             while (rs.next()) {
-                Compoe compoe = new Compoe();          
-                compoe.setFk_Bairro_ID(rs.getInt("fk_bairro_id"));
-                compoe.setFk_Endereco_ID(rs.getInt("fk_endereco_id")); 
-                listCompoe.add(compoe);
+                Da_baixa da_baixa = new Da_baixa();          
+                da_baixa.setFk_BandaPorco_ID(rs.getInt("fk_bandaporco_id"));
+                da_baixa.setFk__Pedido_ID(rs.getInt("fk__pedido_id")); 
+                listCompoe.add(da_baixa);
             }
             rs.close();
             stmt.close();
@@ -99,7 +99,7 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM compoe WHERE fk_endereco_id=" + id +";";
+            String comando = "DELETE FROM da_baixa WHERE fk__pedido_id=" + id +";";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -111,7 +111,7 @@ public class BDCompoe {
         System.out.println("Operação realizada com sucesso!!");
     }
     
-    public  void updateTable(Compoe compoe) {
+    public  void updateTable(Da_baixa da_baixa) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -120,8 +120,8 @@ public class BDCompoe {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String sql = "UPDATE compoe SET Fk_Bairro_ID = " + compoe.getFk_Bairro_ID()+", Fk_Endereco_ID =" +compoe.getFk_Endereco_ID()+ " where fk_Endereco_ID = " + compoe.getFk_Endereco_ID()+";";
-
+            String sql = "UPDATE da_baixa SET Fk_Bandaporco_ID = " + da_baixa.getFk_BandaPorco_ID()+", Fk__pedido_ID =" +da_baixa.getFk__Pedido_ID()+ " where fk__Pedido_ID = " + da_baixa.getFk__Pedido_ID()+";";
+            System.out.println(sql);
             stmt.executeUpdate(sql);            
             stmt.close();
             c.close();
@@ -131,7 +131,4 @@ public class BDCompoe {
         }
         System.out.println("Dado alterado com sucesso!!");
     }
-    
-
-
 }
