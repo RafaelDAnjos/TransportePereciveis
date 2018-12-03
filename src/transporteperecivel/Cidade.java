@@ -12,6 +12,10 @@ public class Cidade {
     public Cidade(String nome){
         this.nome = nome;
     }
+
+    Cidade() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public String getNome() {
         return nome;

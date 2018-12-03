@@ -1,5 +1,9 @@
 package transporteperecivel;
 
+import conexao.BDCidade;
+import conexao.BDFuncionario;
+import java.util.ArrayList;
+
 /**
  *
  * @author rafaelda
@@ -73,6 +77,36 @@ public class Automovel {
     public void setFk_cidade_id(int cidade) {
         this.fk_cidade_id = cidade;
     }
+    public void vinculaFuncionario(Funcionario motorista){
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList();
+        BDFuncionario instance = new BDFuncionario();
+        listaFuncionarios = instance.selectTable();
+        
+        for(int i =0;i<listaFuncionarios.size();i++){
+            Funcionario funcionario = new Funcionario();
+            funcionario = listaFuncionarios.get(i);
+            
+            if(funcionario.getCpf().equals(motorista.getCpf())){
+                    setFk_funcionario_idfuncionario(funcionario.getIdfuncionario());           
+            }
+        }
+    }
+    public void vinculaCidade(Cidade cidadeatendida){
+        ArrayList<Cidade> listaCidade = new ArrayList();
+        BDCidade instance = new BDCidade();
+        listaCidade = instance.selectTable();
+        
+        for(int i =0;i<listaCidade.size();i++){
+            Cidade cidade = new Cidade();
+            cidade = listaCidade.get(i);
+            
+            if(cidade.getNome().equals(cidadeatendida.getNome())){
+                    setFk_cidade_id(cidade.getId());           
+            }
+        }
+        
+    }
 
 
 }
+
