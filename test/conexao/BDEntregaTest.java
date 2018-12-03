@@ -75,7 +75,7 @@ public class BDEntregaTest {
         
         entregaBD.insertTable(entrega);
         
-        entregaBD.deleteTable(entrega.getFk_Cliente_ID());
+        entregaBD.deleteTable(entrega.getFk_Cliente_ID(), entrega.getFk_Automovel_ID());
         
         ArrayList <Entrega> listEnt = entregaBD.selectTable();
 

@@ -75,7 +75,7 @@ public class BDAdicionaTest {
         
         adicionaBD.insertTable(adiciona);
         
-        adicionaBD.deleteTable(adiciona.getFk_BandaPorco_ID());
+        adicionaBD.deleteTable(adiciona.getFk_BandaPorco_ID(),adiciona.getFk_Funcionario_IDfuncionario());
         
         ArrayList <Adiciona> listCom = adicionaBD.selectTable();
 

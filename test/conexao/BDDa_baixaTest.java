@@ -75,7 +75,7 @@ public class BDDa_baixaTest {
         
         da_baixaBD.insertTable(da_baixa);
         
-        da_baixaBD.deleteTable(da_baixa.getFk__Pedido_ID());
+        da_baixaBD.deleteTable(da_baixa.getFk__Pedido_ID(), da_baixa.getFk_BandaPorco_ID());
         
         ArrayList <Da_baixa> listCom = da_baixaBD.selectTable();
 

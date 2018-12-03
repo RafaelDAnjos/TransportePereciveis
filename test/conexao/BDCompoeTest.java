@@ -75,7 +75,7 @@ public class BDCompoeTest {
         
         compoeBD.insertTable(compoe);
         
-        compoeBD.deleteTable(compoe.getFk_Endereco_ID());
+        compoeBD.deleteTable(compoe.getFk_Endereco_ID(), compoe.getFk_Bairro_ID());
         
         ArrayList <Compoe> listCom = compoeBD.selectTable();
 

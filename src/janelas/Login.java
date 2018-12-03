@@ -5,7 +5,11 @@
  */
 package janelas;
 
+import conexao.BDFuncionario;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import transporteperecivel.AcessoLogin;
+import transporteperecivel.Funcionario;
 
 /**
  *
@@ -106,12 +110,34 @@ public class Login extends javax.swing.JFrame {
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         // TODO add your handling code here:
-       
-        String cpf = this.txtLogin.getText();
+                String cpf = this.txtLogin.getText();
         String senha = this.txtSenha.getText();
+        BDFuncionario funcionario = new BDFuncionario();
+        ArrayList <Funcionario> listFun = funcionario.selectTable();
+        System.out.println(listFun.size());
+        int j = 0;
+        for (int i=0; i<listFun.size(); i++)
+        {
+            if(cpf.equals(listFun.get(i).getCpf()))
+            {
+                if(senha.equals(listFun.get(i).getSenha()))
+                {
+                    JOptionPane.showMessageDialog(this, "Acesso Autorizado\n Bem Vindo! " + listFun.get(i).getNome());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(this, "Acesso Negado!\nSenha Errada");
+                }
+                j = 1;
+            }
+        }
+        if(j ==0)
+        {
+            JOptionPane.showMessageDialog(this, "Acesso Negado!\nLogin errado");
+        }
         
         
-        
+
         
     }//GEN-LAST:event_botaoEntrarActionPerformed
 

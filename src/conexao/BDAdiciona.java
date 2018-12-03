@@ -90,7 +90,7 @@ public synchronized ArrayList selectTable() {
         return listAdiciona;
     }
 
-    public  void deleteTable(int id) {
+    public  void deleteTable(int idBandaPorco, int idFuncionario) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -99,7 +99,7 @@ public synchronized ArrayList selectTable() {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM adiciona WHERE fk_bandaporco_id=" + id +";";
+            String comando = "DELETE FROM adiciona WHERE fk_bandaporco_id=" + idBandaPorco +"and fk_funcionario_idFuncionario ="+ idFuncionario+";";
             
             stmt.executeUpdate(comando);            
             stmt.close();

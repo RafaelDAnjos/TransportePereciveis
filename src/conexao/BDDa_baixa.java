@@ -90,7 +90,7 @@ public class BDDa_baixa {
         return listCompoe;
     }
     
-    public  void deleteTable(int id) {
+    public  void deleteTable(int IDDa_baixa, int IDBandaporco) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -99,7 +99,7 @@ public class BDDa_baixa {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM da_baixa WHERE fk__pedido_id=" + id +";";
+            String comando = "DELETE FROM da_baixa WHERE fk__pedido_id=" + IDDa_baixa +"and fk_bandaporco_id ="+IDBandaporco+";";
             
             stmt.executeUpdate(comando);            
             stmt.close();

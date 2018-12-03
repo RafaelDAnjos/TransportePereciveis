@@ -75,7 +75,7 @@ public class BDRecebeTest {
         
         recebeBD.insertTable(recebe);
         
-        recebeBD.deleteTable(recebe.getFk_Cliente_ID());
+        recebeBD.deleteTable(recebe.getFk_Cliente_ID(),recebe.getFk_HorarioRecebimento_ID());
         
         ArrayList <Recebe> listCom = recebeBD.selectTable();
 
