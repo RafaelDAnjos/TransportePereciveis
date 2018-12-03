@@ -9,7 +9,7 @@ import transporteperecivel.Automovel;
 
 /**
  *
- * @author Daniel
+ * @author Rafael
  */
 
 public class BDAutomovel {

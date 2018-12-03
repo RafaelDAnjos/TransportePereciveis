@@ -16,7 +16,7 @@ import transporteperecivel.Automovel;
 
 /**
  *
- * @author Tânia
+ * @author rafael
  */
 public class BDAutomovelTest {
     

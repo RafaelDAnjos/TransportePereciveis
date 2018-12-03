@@ -13,17 +13,18 @@ import transporteperecivel.Logradouro;
  */
 
 public class BDLogradouro {
+    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario =  "postgres",senha =  "123456";
 
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
+            c = DriverManager.getConnection(url,usuario,senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "CREATE TABLE logradouro (id INT, descricao VARCHAR(40));";
+            String comando = "Drop table if exists logradouro cascade ; CREATE TABLE logradouro (id serial, descricao VARCHAR(40));";
             
             stmt.executeUpdate(comando);
             stmt.close();
@@ -40,12 +41,11 @@ public class BDLogradouro {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+        c = DriverManager.getConnection(url,usuario,senha);
         System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
-        String comando = "INSERT INTO logradouro (id, descricao)VALUES("
-                + logradouro.getId() + ",'" + logradouro.getDescricao() + "');"; 
+        String comando = "INSERT INTO logradouro ( descricao)VALUES( '"+ logradouro.getDescricao() + "');"; 
         
         stmt.executeUpdate(comando);
         stmt.close();
@@ -57,17 +57,16 @@ public class BDLogradouro {
     System.out.println("Operação realizada com sucesso!!");
     }
 
-    public  void deleteTable(String descricao) {
+    public  void deleteTable(int id) {
         Connection c = null;
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "");
-            c.setAutoCommit(false);
+            c = DriverManager.getConnection(url,usuario,senha);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
-            String comando = "DELETE FROM logradouro WHERE descricao='" + descricao +"';";
+            String comando = "DELETE FROM logradouro WHERE id = " + id +";";
             
             stmt.executeUpdate(comando);            
             stmt.close();
@@ -85,7 +84,7 @@ public class BDLogradouro {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/testeJava", "postgres", "serra");
+            c = DriverManager.getConnection(url,usuario,senha);
             c.setAutoCommit(false);
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
@@ -93,7 +92,7 @@ public class BDLogradouro {
             ResultSet rs = stmt.executeQuery("SELECT * FROM logradouro ;");
             while (rs.next()) {
                 Logradouro logradouro = new Logradouro();
-                logradouro.setId(rs.getInt("id"));       
+                logradouro.setId(rs.getInt("id")); 
                 logradouro.setDescricao(rs.getString("descricao"));
                 listLogradouros.add(logradouro);
             }
