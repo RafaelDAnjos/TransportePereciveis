@@ -50,8 +50,9 @@ public class BDContatoTest {
         List<Contato> contatos = new ArrayList();
         contatos = bd.selectTable();
         assertEquals("UPDATE contato", "27996911212", contatos.get(0).getTelefone());
-
-        bd.updateTable("27998932344", 1);
+        
+        contato1.setTelefone("27998932344");
+        bd.updateTable(contato1, 1);
         contatos = bd.selectTable();
 
         for (int i = 0; i < contatos.size(); i++) {

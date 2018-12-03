@@ -55,7 +55,8 @@ public class BDCidadeTest{
         cidades = bd.selectTable();
         assertEquals("UPDATE cidade1", "Vitória", cidades.get(0).getNome());
         
-        bd.updateTable("Serra", 1);
+        cidade1.setNome("Serra");
+        bd.updateTable(cidade1, 1);
         cidades = bd.selectTable();
         
         for (int i = 0; i < cidades.size(); i++){

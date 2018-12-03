@@ -50,7 +50,9 @@ public class BDBandaPorcoTest {
         porcos = bd.selectTable();
         assertEquals("UPDATE quantidade porco1", 30, porcos.get(0).getQuantidade());
         
-        bd.updateTable(100, porcos.get(0).getDataDeAbate(), 1);
+        porco1.setQuantidade(100);
+        
+        bd.updateTable(porco1, 1);
         porcos = bd.selectTable();
         
         for (int i = 0; i < porcos.size(); i++){

@@ -50,7 +50,9 @@ public class BDClienteTest {
         clientes = bd.selectTable();
         assertEquals("UPDATE cliente", "Nicolas", clientes.get(0).getNomeFicticio());
         
-        bd.updateTable("Lucas", cliente1.getCnpj(), 1);
+        cliente1.setNomeFicticio("Lucas");
+        
+        bd.updateTable(cliente1, 1);
         clientes = bd.selectTable();
         
         for (int i = 0; i < clientes.size(); i++){

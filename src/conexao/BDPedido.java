@@ -23,8 +23,12 @@ public class BDPedido {
             stmt = c.createStatement();
 
             String comando = "DROP TABLE IF EXISTS pedido CASCADE;"
-                    + "CREATE TABLE pedido (numeroBandas INT, dataDeEntrega DATE, id SERIAL);";
-
+                    + "CREATE TABLE pedido "
+                    + "(numeroBandas INT, "
+                    + "dataDeEntrega DATE, "
+                    + "id SERIAL PRIMARY KEY, "
+                    + "fkcliente SERIAL, "
+                    + "fkfuncionario SERIAL);";
             stmt.executeUpdate(comando);
             stmt.close();
             c.close();
@@ -44,8 +48,8 @@ public class BDPedido {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
-            String comando = "INSERT INTO pedido (numeroBandas, dataDeEntrega) "
-                    + "VALUES(" + pedido.getNumeroBandas() + ",'" + pedido.getDataDeEntrega() + "');";
+            String comando = "INSERT INTO pedido (numeroBandas, dataDeEntrega, fkcliente, fkfuncionario) "
+                    + "VALUES(" + pedido.getNumeroBandas() + ",'" + pedido.getDataDeEntrega() + "', " + pedido.getFkcliente() + ", " + pedido.getFkfuncionario() + ");";
 
             stmt.executeUpdate(comando);
             stmt.close();
@@ -78,7 +82,7 @@ public class BDPedido {
         System.out.println("Delete realizado com sucesso!!");
     }
 
-    public void updateTable(int numeroBandas, String dataDeEntrega, int id) {
+    public void updateTable(Pedido pedido, int id) {
         Connection c = null;
         Statement stmt = null;
         try {
@@ -87,8 +91,9 @@ public class BDPedido {
             System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
-            String sql = "UPDATE pedido SET numerobandas = " + numeroBandas + ","
-                    + "datadeentrega = '" + dataDeEntrega + "' WHERE id =" + id + ";";
+            String sql = "UPDATE pedido SET numerobandas = " + pedido.getNumeroBandas() + ","
+                    + "datadeentrega = '" + pedido.getDataDeEntrega() + "', fkcliente = " + pedido.getFkcliente() + ", fkfuncionario = " + pedido.getFkfuncionario()
+                    + " WHERE id =" + id + ";";
 
             stmt.executeUpdate(sql);
             stmt.close();
@@ -114,6 +119,8 @@ public class BDPedido {
             ResultSet rs = stmt.executeQuery("SELECT * FROM pedido ;");
             while (rs.next()) {
                 Pedido pedido = new Pedido(rs.getInt("numeroBandas"), rs.getString("dataDeEntrega"));
+                pedido.setFkcliente(rs.getInt("fkcliente"));
+                pedido.setFkfuncionario(rs.getInt("fkfuncionario"));
                 pedido.setId(rs.getInt("id"));
                 listPedidos.add(pedido);
             }
