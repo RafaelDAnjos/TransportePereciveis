@@ -6,35 +6,48 @@ package transporteperecivel;
  */
 
 public class Automovel {
-    private boolean refrigerado;
-    private float pesoMax;
-    private int idModelo;
+    private boolean isrefrigerado;
+    private float carga_maxima;
+    private String Modelo;
     private String placa;
-    private int idFuncionario;
-    private String cidade;
+    private int fk_funcionario_idfuncionario;
+    private int fk_cidade_id;
+    private int id;
 
-    public boolean isRefrigerado() {
-        return refrigerado;
+    public boolean getIsrefrigerado() {
+        return isrefrigerado;
     }
 
-    public void setRefrigerado(boolean refrigerado) {
-        this.refrigerado = refrigerado;
+    public void setIsrefrigerado(boolean isrefrigerado) {
+        this.isrefrigerado = isrefrigerado;
     }
 
-    public float getPesoMax() {
-        return pesoMax;
+    public int getId() {
+        return id;
     }
 
-    public void setPesoMax(float pesoMax) {
-        this.pesoMax = pesoMax;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public int getIdModelo() {
-        return idModelo;
+    public float getCarga_maxima() {
+        return carga_maxima;
     }
 
-    public void setIdModelo(int idModelo) {
-        this.idModelo = idModelo;
+    public void setCarga_maxima(float carga_maxima) {
+        this.carga_maxima = carga_maxima;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getModelo() {
+        return Modelo;
+    }
+
+    public void setModelo(String Modelo) {
+        this.Modelo = Modelo;
     }
 
     public String getPlaca() {
@@ -45,20 +58,20 @@ public class Automovel {
         this.placa = placa;
     }
 
-    public int getIdFuncionario() {
-        return idFuncionario;
+    public int getFk_funcionario_idfuncionario() {
+        return fk_funcionario_idfuncionario;
     }
 
-    public void setIdFuncionario(int idFuncionario) {
-        this.idFuncionario = idFuncionario;
+    public void setFk_funcionario_idfuncionario(int fk_funcionario_idfuncionario) {
+        this.fk_funcionario_idfuncionario = fk_funcionario_idfuncionario;
     }
 
-    public String getCidade() {
-        return cidade;
+    public int getFk_cidade_id() {
+        return fk_cidade_id;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setFk_cidade_id(int cidade) {
+        this.fk_cidade_id = cidade;
     }
 
 
