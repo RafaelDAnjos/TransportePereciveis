@@ -77,7 +77,7 @@ public class Automovel {
     public void setFk_cidade_id(int cidade) {
         this.fk_cidade_id = cidade;
     }
-    public void vinculaFuncionario(Funcionario motorista){
+    public void vinculaFuncionario(Funcionario novofuncionario){
         ArrayList<Funcionario> listaFuncionarios = new ArrayList();
         BDFuncionario instance = new BDFuncionario();
         listaFuncionarios = instance.selectTable();
@@ -86,12 +86,12 @@ public class Automovel {
             Funcionario funcionario = new Funcionario();
             funcionario = listaFuncionarios.get(i);
             
-            if(funcionario.getCpf().equals(motorista.getCpf())){
+            if(funcionario.getCpf().equals(novofuncionario.getCpf())){
                     setFk_funcionario_idfuncionario(funcionario.getIdfuncionario());           
             }
         }
     }
-    public void vinculaCidade(Cidade cidadeatendida){
+    public void vinculaCidade(Cidade novacidade){
         ArrayList<Cidade> listaCidade = new ArrayList();
         BDCidade instance = new BDCidade();
         listaCidade = instance.selectTable();
@@ -100,7 +100,7 @@ public class Automovel {
             Cidade cidade = new Cidade();
             cidade = listaCidade.get(i);
             
-            if(cidade.getNome().equals(cidadeatendida.getNome())){
+            if(cidade.getNome().equals(novacidade.getNome())){
                     setFk_cidade_id(cidade.getId());           
             }
         }

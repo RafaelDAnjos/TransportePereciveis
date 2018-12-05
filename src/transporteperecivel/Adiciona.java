@@ -5,6 +5,10 @@
  */
 package transporteperecivel;
 
+import conexao.BDBandaPorco;
+import conexao.BDFuncionario;
+import java.util.ArrayList;
+
 /**
  *
  * @author rafae
@@ -28,5 +32,35 @@ public class Adiciona {
     public void setFk_BandaPorco_ID(int fk_BandaPorco_ID) {
         this.fk_BandaPorco_ID = fk_BandaPorco_ID;
     }
-
+    public void vinculaFuncionario(Funcionario novofuncionario){
+        ArrayList<Funcionario> listaFuncionarios = new ArrayList();
+        BDFuncionario instance = new BDFuncionario();
+        listaFuncionarios = instance.selectTable();
+        
+        for(int i =0;i<listaFuncionarios.size();i++){
+            Funcionario funcionario = new Funcionario();
+            funcionario = listaFuncionarios.get(i);
+            
+            if(funcionario.getCpf().equals(novofuncionario.getCpf())){
+                    setFk_Funcionario_IDfuncionario(funcionario.getIdfuncionario());           
+            }
+        }
+    }
+    public void vinculaBandaPorco(BandaPorco novabanda){
+        ArrayList<BandaPorco> listabandas = new ArrayList();
+        BDBandaPorco instance = new BDBandaPorco();
+        listabandas = instance.selectTable();
+        
+        for(int i =0;i<listabandas.size();i++){
+        BandaPorco bandaporco = new BandaPorco();
+        bandaporco = listabandas.get(i);
+        
+        if(bandaporco.getDataDeAbate().equals(novabanda.getDataDeAbate())){
+        
+            setFk_BandaPorco_ID(bandaporco.getId());
+        }
+        }
+    
+    
+    }
 }

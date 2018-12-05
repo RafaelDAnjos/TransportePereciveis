@@ -15,6 +15,9 @@ public class Cliente {
         this.cnpj = cnpj;
     }
 
+    Cliente() {
+    }
+
     public String getNomeFicticio() {
         return nomeFicticio;
     }

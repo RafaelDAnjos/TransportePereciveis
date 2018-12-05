@@ -15,6 +15,9 @@ public class BandaPorco {
         quantidade = qnt;
     }
 
+    BandaPorco() {
+    }
+
     public String getDataDeAbate() {
         return dataDeAbate;
     }
