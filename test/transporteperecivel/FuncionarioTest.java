@@ -43,7 +43,7 @@ public class FuncionarioTest {
         System.out.println("cadastrafuncionario");
         Funcionario instance = new Funcionario();
         
-        instance.DeleteFuncionario();
+        instance.AlterarFuncionario();
     }
 
     /**

@@ -73,9 +73,50 @@ public class Contato {
             funcionario.setCpf(JOptionPane.showInputDialog("Digite o CPF do funcionario"));
             JOptionPane.showMessageDialog(null,funcionario.getCpf());
             vinculaFuncionario(funcionario);
+            contato.setFkfuncionario(this.fkfuncionario);
             instance.insertTable(contato);
         }
     }
+
+    public void AlterarContato()
+    {
+        Contato contato = new Contato();
+        List<Contato> Listcon;
+        
+        BDContato instance = new BDContato();
+        
+        Listcon = instance.selectTable();
+        
+        int idFun = 0;
+        
+        String msg = "";
+        
+        contato.ListaContato();
+        
+        contato.setTelefone(JOptionPane.showInputDialog("Informe o numero do Telefone do funcionario"));
+        
+        for(int i = 0; i < Listcon.size(); i++)
+        {
+            if(contato.getTelefone().equals(Listcon.get(i).getTelefone()))
+            {
+                JOptionPane.showMessageDialog(null, "Telefone encontrado");
+                contato.setTelefone(JOptionPane.showInputDialog("Digite o contato do funcionario"));
+                contato.setId(Listcon.get(i).getId());
+                contato.setFkfuncionario(Listcon.get(i).getFkfuncionario());
+                idFun = 1;
+                instance.updateTable(contato, contato.getId());
+                break;
+            }
+        }
+        
+        if(idFun == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Contato não encontrado", "Contato não encontrado", 0);
+        }
+        
+        
+    }    
+    
     
     public void vinculaFuncionario(Funcionario novofuncionario){
         ArrayList<Funcionario> listaFuncionarios = new ArrayList();
@@ -93,4 +134,21 @@ public class Contato {
         }
     }
 
+    public void ListaContato()
+    {
+        List<Contato> listcon;
+        
+        BDContato instance = new BDContato();
+        
+        listcon = instance.selectTable();
+        String msg = "";
+        
+        for(int i = 0; i < listcon.size(); i++)
+        {
+            msg = msg + "Contato: " + listcon.get(i).getTelefone()+ "\n";
+        }
+        
+        JOptionPane.showMessageDialog(null, msg, "Funcionarios", 1);
+    }
 }
+

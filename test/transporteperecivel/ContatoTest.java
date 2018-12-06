@@ -43,7 +43,7 @@ public class ContatoTest {
         System.out.println("cadastrafuncionario");
         Contato instance = new Contato();
         
-        instance.AdicionarContato();
+        instance.AlterarContato(); 
 
 
     }
