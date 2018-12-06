@@ -22,8 +22,10 @@ public class BDContatoTest {
         BDContato bd = new BDContato();
         bd.createTable();
 
-        Contato contato1 = new Contato("27996911212");
-        Contato contato2 = new Contato("40028922");
+        Contato contato1 = new Contato();
+        contato1.setTelefone("27996911212");
+        Contato contato2 = new Contato();
+        contato2.setTelefone("40028922");
 
         bd.insertTable(contato1);
         bd.insertTable(contato2);
@@ -41,8 +43,10 @@ public class BDContatoTest {
         BDContato bd = new BDContato();
         bd.createTable();
 
-        Contato contato1 = new Contato("27996911212");
-        Contato contato2 = new Contato("40028922");
+        Contato contato1 = new Contato();
+        contato1.setTelefone("27996911212");
+        Contato contato2 = new Contato();
+        contato2.setTelefone("40028922");
 
         bd.insertTable(contato1);
         bd.insertTable(contato2);
@@ -67,8 +71,10 @@ public class BDContatoTest {
         BDContato bd = new BDContato();
         bd.createTable();
 
-        Contato contato1 = new Contato("27996911212");
-        Contato contato2 = new Contato("40028922");
+        Contato contato1 = new Contato();
+        contato1.setTelefone("27996911212");
+        Contato contato2 = new Contato();
+        contato2.setTelefone("40028922");
 
         bd.insertTable(contato1);
         bd.insertTable(contato2);

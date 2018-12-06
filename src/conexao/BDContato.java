@@ -19,12 +19,12 @@ public class BDContato {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "Postgres123");
             stmt = c.createStatement();
             
             String sql = "DROP TABLE IF EXISTS contato CASCADE; CREATE TABLE contato ("
                     + "telefone VARCHAR(12),"
-                    + "id SERIAL PRIMARY KEY, fkfuncionario SERIAL"
+                    + "id SERIAL PRIMARY KEY, fk_funcionario_idfuncionario SERIAL"
                     + ");";
             
             stmt.executeUpdate(sql);
@@ -41,10 +41,10 @@ public class BDContato {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "Postgres123");
         stmt = c.createStatement();
        
-        String sql = "INSERT INTO contato (telefone, fkfuncionario) "
+        String sql = "INSERT INTO contato (telefone, fk_funcionario_idfuncionario) "
                 + "VALUES('" + telefone.getTelefone() + "', " + telefone.getFkfuncionario() + ");"; 
         
         stmt.executeUpdate(sql);
@@ -61,7 +61,7 @@ public class BDContato {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "Postgres123");
             stmt = c.createStatement();
             
             String sql = "DELETE FROM contato WHERE id=" + id +";";
@@ -80,7 +80,7 @@ public class BDContato {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "Postgres123");
             stmt = c.createStatement();
             
             String sql = "UPDATE contato SET telefone = '" + contato.getTelefone() + "', fkfuncionario = " + contato.getFkfuncionario() + "WHERE id =" + id + ";";
@@ -101,12 +101,13 @@ public class BDContato {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "Postgres123");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM contato ;");
             while (rs.next()) {
-                Contato contato = new Contato(rs.getString("telefone"));
+                Contato contato = new Contato();
+                contato.setTelefone(rs.getString("telefone"));
                 contato.setFkfuncionario(rs.getInt("fkfuncionario"));
                 contato.setId(rs.getInt("id"));              
                 listContatos.add(contato);
