@@ -21,7 +21,6 @@ public class BDLogradouro {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "Drop table if exists logradouro cascade ; CREATE TABLE logradouro (id serial, descricao VARCHAR(40));";
@@ -32,7 +31,6 @@ public class BDLogradouro {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public  void insertTable(Logradouro logradouro) {
@@ -42,7 +40,6 @@ public class BDLogradouro {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url,usuario,senha);
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO logradouro ( descricao)VALUES( '"+ logradouro.getDescricao() + "');"; 
@@ -54,7 +51,6 @@ public class BDLogradouro {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
 
     public  void deleteTable(int id) {
@@ -63,7 +59,6 @@ public class BDLogradouro {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM logradouro WHERE id = " + id +";";
@@ -75,7 +70,6 @@ public class BDLogradouro {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -86,7 +80,6 @@ public class BDLogradouro {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
             c.setAutoCommit(false);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM logradouro ;");
@@ -102,7 +95,6 @@ public class BDLogradouro {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listLogradouros;
     }
     

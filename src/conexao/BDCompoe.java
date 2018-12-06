@@ -24,7 +24,6 @@ public class BDCompoe {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DROP TABLE IF EXISTS compoe cascade; CREATE TABLE Compoe (\n" +
@@ -38,7 +37,6 @@ public class BDCompoe {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public  void insertTable(Compoe compoe) {
@@ -48,7 +46,6 @@ public class BDCompoe {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url, usuario, senha);
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO compoe(fk_bairro_id, fk_endereco_id)VALUES(" + compoe.getFk_Bairro_ID()+ "," + compoe.getFk_Endereco_ID()+ ");"; 
@@ -60,7 +57,6 @@ public class BDCompoe {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
     
     public synchronized ArrayList selectTable() {
@@ -70,7 +66,6 @@ public class BDCompoe {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM Compoe ;");
@@ -86,7 +81,6 @@ public class BDCompoe {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listCompoe;
     }
     
@@ -96,7 +90,6 @@ public class BDCompoe {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM compoe WHERE fk_endereco_id=" + idEndereco +" and fk_bairro_id =" + idBairro +";";
@@ -108,7 +101,6 @@ public class BDCompoe {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
     
     public  void updateTable(Compoe compoe) {
@@ -117,7 +109,6 @@ public class BDCompoe {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE compoe SET Fk_Bairro_ID = " + compoe.getFk_Bairro_ID()+", Fk_Endereco_ID =" +compoe.getFk_Endereco_ID()+ " where fk_Endereco_ID = " + compoe.getFk_Endereco_ID()+";";
@@ -129,7 +120,6 @@ public class BDCompoe {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }
     
 

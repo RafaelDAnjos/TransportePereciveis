@@ -20,7 +20,6 @@ public class BDCliente {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "DROP TABLE IF EXISTS cliente cascade; CREATE TABLE cliente ("
@@ -35,7 +34,6 @@ public class BDCliente {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public  void insertTable(Cliente cliente) {
@@ -45,7 +43,6 @@ public class BDCliente {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String sql = "INSERT INTO cliente (nomeFicticio, cnpj) "
@@ -58,7 +55,6 @@ public class BDCliente {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Dado inserido com sucesso!!");
     }
 
     public  void deleteTable(int id) {
@@ -67,7 +63,6 @@ public class BDCliente {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "DELETE FROM cliente WHERE id=" + id +";";
@@ -79,7 +74,6 @@ public class BDCliente {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado deletado com sucesso!!");
     }
     
         public  void updateTable(Cliente cliente, int id) {
@@ -88,7 +82,6 @@ public class BDCliente {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE cliente SET nomeficticio = '" + cliente.getNomeFicticio() + "',"
@@ -101,7 +94,6 @@ public class BDCliente {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado deletado com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -111,7 +103,6 @@ public class BDCliente {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM cliente ;");
@@ -126,7 +117,6 @@ public class BDCliente {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Dados selecionados com sucesso!!");
         return listClientes;
     }
     

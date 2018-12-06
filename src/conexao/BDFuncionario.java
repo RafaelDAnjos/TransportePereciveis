@@ -20,7 +20,6 @@ public class BDFuncionario {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DROP TABLE IF EXISTS funcionario cascade; CREATE TABLE funcionario (nome VARCHAR(30), cpf VARCHAR(12), senha VARCHAR(20), cargaHoraria VARCHAR(10), idfuncionario Serial);";
@@ -31,7 +30,6 @@ public class BDFuncionario {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public  void insertTable(Funcionario funcionario) {
@@ -41,7 +39,6 @@ public class BDFuncionario {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url, usuario, senha);
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO funcionario (nome, cpf, senha, cargaHoraria)VALUES('"
@@ -53,7 +50,6 @@ public class BDFuncionario {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
 
     public  void deleteTable(int id) {
@@ -64,7 +60,6 @@ public class BDFuncionario {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
              
             comando = "delete from funcionario where idfuncionario = " +id+";";
@@ -76,7 +71,6 @@ public class BDFuncionario {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -87,7 +81,6 @@ public class BDFuncionario {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
             //c.setAutoCommit(false);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM funcionario ;");
@@ -106,7 +99,6 @@ public class BDFuncionario {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listFuncionarios;
     }
     
@@ -118,7 +110,6 @@ public class BDFuncionario {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
             //c.setAutoCommit(false);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM funcionario where cpf = "+cpf+ ";");
@@ -137,7 +128,6 @@ public class BDFuncionario {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         
         return listFuncionarios;
     }
@@ -148,7 +138,6 @@ public class BDFuncionario {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE funcionario SET nome = '" + funcionario.getNome() + "', cargahoraria ='"+ 
@@ -162,6 +151,5 @@ public class BDFuncionario {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }
 }

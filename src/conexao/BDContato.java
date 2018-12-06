@@ -20,7 +20,6 @@ public class BDContato {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "DROP TABLE IF EXISTS contato CASCADE; CREATE TABLE contato ("
@@ -34,7 +33,6 @@ public class BDContato {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public  void insertTable(Contato telefone) {
@@ -44,7 +42,6 @@ public class BDContato {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String sql = "INSERT INTO contato (telefone, fkfuncionario) "
@@ -57,7 +54,6 @@ public class BDContato {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Dado inserido com sucesso!!");
     }
 
     public  void deleteTable(int id) {
@@ -66,7 +62,6 @@ public class BDContato {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "DELETE FROM contato WHERE id=" + id +";";
@@ -78,7 +73,6 @@ public class BDContato {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado deletado com sucesso!!");
     }
     
         public  void updateTable(Contato contato, int id) {
@@ -87,7 +81,6 @@ public class BDContato {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE contato SET telefone = '" + contato.getTelefone() + "', fkfuncionario = " + contato.getFkfuncionario() + "WHERE id =" + id + ";";
@@ -100,7 +93,6 @@ public class BDContato {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado atualizado com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -110,7 +102,6 @@ public class BDContato {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM contato ;");
@@ -126,7 +117,6 @@ public class BDContato {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Dados selecionados com sucesso!!");
         return listContatos;
     }
     

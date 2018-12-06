@@ -20,7 +20,6 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DROP TABLE IF EXISTS Endereco cascade; CREATE TABLE endereco (    nome varchar(30),\n" +
@@ -36,7 +35,6 @@ public class BDEndereco {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
     
     
@@ -46,7 +44,6 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE cliente SET nomeficticio = '" + complemento + ";";
@@ -58,7 +55,6 @@ public class BDEndereco {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }*/
     
     
@@ -69,7 +65,6 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE endereco SET nome = '" + endereco.getNome() + "',complemento ='" + endereco.getComplemento()+
@@ -83,7 +78,6 @@ public class BDEndereco {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }
     
     
@@ -95,7 +89,6 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url , usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
        
         String comando = "INSERT INTO endereco (fk_logradouro_id, fk_cliente_id, complemento, nome, numero)VALUES("
@@ -108,7 +101,6 @@ public class BDEndereco {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
 
     public  void deleteTable(int id) {
@@ -117,7 +109,6 @@ public class BDEndereco {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM endereco WHERE id=" + id +";";
@@ -129,7 +120,6 @@ public class BDEndereco {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -140,7 +130,6 @@ public class BDEndereco {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
             //c.setAutoCommit(false);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM endereco ;");
@@ -160,7 +149,6 @@ public class BDEndereco {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listEnderecos;
     }
     

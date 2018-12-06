@@ -23,7 +23,6 @@ public class BDAdiciona {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DROP TABLE IF EXISTS adiciona cascade; CREATE TABLE adiciona (\n" +
@@ -37,7 +36,6 @@ public class BDAdiciona {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
 
@@ -48,7 +46,6 @@ public  void insertTable(Adiciona adiciona) {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url, usuario, senha);
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO adiciona(fk_BandaPorco_id, Fk_Funcionario_IDfuncionario)VALUES(" + adiciona.getFk_BandaPorco_ID()+ "," + adiciona.getFk_Funcionario_IDfuncionario()+ ");"; 
@@ -60,7 +57,6 @@ public  void insertTable(Adiciona adiciona) {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
 
 public synchronized ArrayList selectTable() {
@@ -70,7 +66,6 @@ public synchronized ArrayList selectTable() {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM Adiciona ;");
@@ -86,7 +81,6 @@ public synchronized ArrayList selectTable() {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listAdiciona;
     }
 
@@ -96,7 +90,6 @@ public synchronized ArrayList selectTable() {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM adiciona WHERE fk_bandaporco_id=" + idBandaPorco +"and fk_funcionario_idFuncionario ="+ idFuncionario+";";
@@ -108,7 +101,6 @@ public synchronized ArrayList selectTable() {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
     
     public  void updateTable(Adiciona adiciona) {
@@ -117,7 +109,6 @@ public synchronized ArrayList selectTable() {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE adiciona SET Fk_funcionario_IDfuncionario = " + adiciona.getFk_Funcionario_IDfuncionario()+", Fk_bandaporco_ID =" +adiciona.getFk_BandaPorco_ID()+ " where fk_BandaPorco_ID = " + adiciona.getFk_BandaPorco_ID()+";";
@@ -129,7 +120,6 @@ public synchronized ArrayList selectTable() {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }
 
 }

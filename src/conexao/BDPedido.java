@@ -19,7 +19,6 @@ public class BDPedido {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
             String comando = "DROP TABLE IF EXISTS pedido CASCADE;"
@@ -35,7 +34,6 @@ public class BDPedido {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
 
     public void insertTable(Pedido pedido) {
@@ -45,7 +43,6 @@ public class BDPedido {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
             String comando = "INSERT INTO pedido (numeroBandas, dataDeEntrega, fkcliente, fkfuncionario) "
@@ -58,7 +55,6 @@ public class BDPedido {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-        System.out.println("Insert realizado com sucesso!!");
     }
 
     public void deleteTable(int id) {
@@ -67,7 +63,6 @@ public class BDPedido {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
             String comando = "DELETE FROM pedido WHERE id=" + id + ";";
@@ -79,7 +74,6 @@ public class BDPedido {
             System.err.println(e.getClass().getName() + ": "
                     + e.getMessage());
         }
-        System.out.println("Delete realizado com sucesso!!");
     }
 
     public void updateTable(Pedido pedido, int id) {
@@ -88,7 +82,6 @@ public class BDPedido {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
             String sql = "UPDATE pedido SET numerobandas = " + pedido.getNumeroBandas() + ","
@@ -102,7 +95,6 @@ public class BDPedido {
             System.err.println(e.getClass().getName() + ": "
                     + e.getMessage());
         }
-        System.out.println("Update realizado com sucesso!!");
     }
 
     public synchronized ArrayList selectTable() {
@@ -113,7 +105,6 @@ public class BDPedido {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             //c.setAutoCommit(false);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
 
             ResultSet rs = stmt.executeQuery("SELECT * FROM pedido ;");
@@ -130,7 +121,6 @@ public class BDPedido {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-        System.out.println("Select realizado com sucesso!!");
         return listPedidos;
     }
 

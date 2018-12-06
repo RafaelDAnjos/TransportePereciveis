@@ -23,7 +23,6 @@ public class BDHorarioRecebimento {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DROP TABLE IF EXISTS horariorecebimento cascade; CREATE TABLE horariorecebimento (\n"
@@ -38,7 +37,6 @@ public class BDHorarioRecebimento {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Tabela criada com sucesso!!");
     }
     
     public  void insertTable(HorarioRecebimento horario) {
@@ -48,7 +46,6 @@ public class BDHorarioRecebimento {
     try {
         Class.forName("org.postgresql.Driver");
         c = DriverManager.getConnection(url, usuario, senha);
-        System.out.println("Banco de dados aberto com sucesso!!");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO horariorecebimento(horarioinicio, horariofim)VALUES('" + horario.getHorarioInicio()+ "','" + horario.getHorarioFim()+ "');"; 
@@ -60,7 +57,6 @@ public class BDHorarioRecebimento {
     } catch (Exception e) {
         System.err.println(e.getClass().getName() + ": " + e.getMessage());            
     }
-    System.out.println("Operação realizada com sucesso!!");
     }
     
     public synchronized ArrayList selectTable() {
@@ -70,7 +66,6 @@ public class BDHorarioRecebimento {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM horariorecebimento ;");
@@ -86,7 +81,6 @@ public class BDHorarioRecebimento {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
         return listhorario;
     }
     
@@ -96,7 +90,6 @@ public class BDHorarioRecebimento {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url, usuario, senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM horariorecebimento WHERE id=" + id +";";
@@ -108,7 +101,6 @@ public class BDHorarioRecebimento {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Operação realizada com sucesso!!");
     }
     
     public  void updateTable(HorarioRecebimento horario) {
@@ -117,7 +109,6 @@ public class BDHorarioRecebimento {
         try {
             Class.forName("org.postgresql.Driver");
             c = DriverManager.getConnection(url,usuario,senha);
-            System.out.println("Banco de dados aberto com sucesso!!");
             stmt = c.createStatement();
             
             String sql = "UPDATE horariorecebimento SET horarioinicio = " + horario.getHorarioInicio()+", horariofim =" +horario.getHorarioFim()+ " where id = " + horario.getID()+";";
@@ -129,6 +120,5 @@ public class BDHorarioRecebimento {
             System.err.println(e.getClass().getName() + ": " + 
                     e.getMessage());            
         }
-        System.out.println("Dado alterado com sucesso!!");
     }
 }
