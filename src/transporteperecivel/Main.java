@@ -1,15 +1,41 @@
 package transporteperecivel;
 
-import conexao.BDBairro;
-import conexao.BDEndereco;
+import conexao.BDPedido;
+import conexao.BDCliente;
+import conexao.BDFuncionario;
+
 import conexao.BDConnection;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class Main {
 
     public static void main(String[] args) {
         
+        
+        
+        
+        
+        
+        /*
+        //Teste cadastraPedido
+        
+        BDConnection conexao = new BDConnection();
+        
+        BDCliente clienteBD = new BDCliente();
+        List<Cliente> clientes = clienteBD.selectTable();
+        
+        BDFuncionario funcionarioBD = new BDFuncionario();
+        List<Funcionario> funcionarios = funcionarioBD.selectTable();
+        
+        Pedido pedido = new Pedido();
+        
+        pedido.cadastraPedido(funcionarios.get(0), clientes.get(0));
+        */
+        
+
+        /*
         Funcionario funcionario = new Funcionario();
         
         AcessoLogin acesso = new AcessoLogin();
@@ -36,5 +62,6 @@ public class Main {
                      + "digite 5 para Alterar Estoque\n"
                      + "digite 6 para sair\n"));
             }
+        */
     }
 }

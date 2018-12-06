@@ -2,7 +2,9 @@ package transporteperecivel;
 
 import conexao.BDCliente;
 import conexao.BDFuncionario;
+import conexao.BDPedido;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -63,37 +65,54 @@ public class Pedido {
     public void setId(int id) {
         this.id = id;
     }
+    
+    
     public void vinculaCliente(Cliente novocliente){
         ArrayList<Cliente> listacliente = new ArrayList();
         BDCliente instance = new BDCliente();
         listacliente =  instance.selectTable();
         
-        
+        Cliente cliente = new Cliente();
         for(int i =0;i<listacliente.size();i++){
-            Cliente cliente = new Cliente();
             cliente = listacliente.get(i);
             
             if(novocliente.getCnpj().equals(cliente.getCnpj())){
                 setFkcliente(cliente.getId());
             }
         }
+    }
 
 
-}
-    
-        public void vinculaFuncionario(Funcionario novofuncionario){
-        ArrayList<Funcionario> listaFuncionarios = new ArrayList();
-        BDFuncionario instance = new BDFuncionario();
-        listaFuncionarios = instance.selectTable();
+    public void vinculaFuncionario(Funcionario novofuncionario){
+    ArrayList<Funcionario> listaFuncionarios = new ArrayList();
+    BDFuncionario instance = new BDFuncionario();
+    listaFuncionarios = instance.selectTable();
         
-        for(int i =0;i<listaFuncionarios.size();i++){
-            Funcionario funcionario = new Funcionario();
-            funcionario = listaFuncionarios.get(i);
+    Funcionario funcionario = new Funcionario();
+    for(int i =0;i<listaFuncionarios.size();i++){
+        funcionario = listaFuncionarios.get(i);
             
-            if(funcionario.getCpf().equals(novofuncionario.getCpf())){
-                    setFkfuncionario(funcionario.getIdfuncionario());           
-            }
+        if(funcionario.getCpf().equals(novofuncionario.getCpf())){
+            setFkfuncionario(funcionario.getIdfuncionario());           
         }
+    }
+    }
+
+
+    public void cadastraPedido(Funcionario funcionario, Cliente cliente){
+
+    BDPedido pedidoBD = new BDPedido();
+    Pedido pedido = new Pedido();
+
+    String numBandas = JOptionPane.showInputDialog("Digite o número de bandas: ");
+    int nBandas = Integer.parseInt(numBandas);
+
+    pedido.setNumeroBandas(nBandas);
+    pedido.setDataDeEntrega(JOptionPane.showInputDialog("Digite a data de entrega: "));
+    pedido.vinculaCliente(cliente);
+    pedido.vinculaFuncionario(funcionario);
+
+    pedidoBD.insertTable(pedido);
     }
 
 }
