@@ -21,13 +21,13 @@ public class BDPedido {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
 
-            String comando = "DROP TABLE IF EXISTS pedido CASCADE;"
-                    + "CREATE TABLE pedido "
+            String comando = "DROP TABLE IF EXISTS _pedido CASCADE;"
+                    + "CREATE TABLE _pedido "
                     + "(numeroBandas INT, "
-                    + "dataDeEntrega DATE, "
+                    + "dataEntrega DATE, "
                     + "id SERIAL PRIMARY KEY, "
-                    + "fkcliente SERIAL, "
-                    + "fkfuncionario SERIAL);";
+                    + "fk_cliente_id SERIAL, "
+                    + "fk_funcionario_idfuncionario SERIAL);";
             stmt.executeUpdate(comando);
             stmt.close();
             c.close();
@@ -45,7 +45,7 @@ public class BDPedido {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
 
-            String comando = "INSERT INTO pedido (numeroBandas, dataDeEntrega, fkcliente, fkfuncionario) "
+            String comando = "INSERT INTO _pedido (numeroBandas, dataEntrega, fk_cliente_id, fk_funcionario_idfuncionario) "
                     + "VALUES(" + pedido.getNumeroBandas() + ",'" + pedido.getDataDeEntrega() + "', " + pedido.getFkcliente() + ", " + pedido.getFkfuncionario() + ");";
 
             stmt.executeUpdate(comando);
@@ -65,7 +65,7 @@ public class BDPedido {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
 
-            String comando = "DELETE FROM pedido WHERE id=" + id + ";";
+            String comando = "DELETE FROM _pedido WHERE id=" + id + ";";
 
             stmt.executeUpdate(comando);
             stmt.close();
@@ -84,8 +84,8 @@ public class BDPedido {
             c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
 
-            String sql = "UPDATE pedido SET numerobandas = " + pedido.getNumeroBandas() + ","
-                    + "datadeentrega = '" + pedido.getDataDeEntrega() + "', fkcliente = " + pedido.getFkcliente() + ", fkfuncionario = " + pedido.getFkfuncionario()
+            String sql = "UPDATE _pedido SET numeroBandas = " + pedido.getNumeroBandas() + ","
+                    + "dataEntrega = '" + pedido.getDataDeEntrega() + "', fk_cliente_id = " + pedido.getFkcliente() + ", fk_funcionario_idfuncionario = " + pedido.getFkfuncionario()
                     + " WHERE id =" + id + ";";
 
             stmt.executeUpdate(sql);
@@ -107,11 +107,11 @@ public class BDPedido {
             //c.setAutoCommit(false);
             stmt = c.createStatement();
 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pedido ;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM _pedido ;");
             while (rs.next()) {
-                Pedido pedido = new Pedido(rs.getInt("numeroBandas"), rs.getString("dataDeEntrega"));
-                pedido.setFkcliente(rs.getInt("fkcliente"));
-                pedido.setFkfuncionario(rs.getInt("fkfuncionario"));
+                Pedido pedido = new Pedido(rs.getInt("numeroBandas"), rs.getString("dataEntrega"));
+                pedido.setFkcliente(rs.getInt("fk_cliente_id"));
+                pedido.setFkfuncionario(rs.getInt("fk_funcionario_idfuncionario"));
                 pedido.setId(rs.getInt("id"));
                 listPedidos.add(pedido);
             }
