@@ -6,8 +6,10 @@
 package transporteperecivel;
 
 import conexao.BDBandaPorco;
+import conexao.BDDa_baixa;
 import conexao.BDPedido;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +19,9 @@ public class Da_baixa {
     private int fk_BandaPorco_ID;
     private int fk__Pedido_ID;
 
+    public void Da_baixa() {
+    }
+    
     public int getFk_BandaPorco_ID() {
         return fk_BandaPorco_ID;
     }
@@ -60,12 +65,41 @@ public class Da_baixa {
                     if(novopedido.getFkfuncionario() == pedido.getFkfuncionario()){
                         if(novopedido.getNumeroBandas() == pedido.getNumeroBandas()){
                             setFk__Pedido_ID(pedido.getId());
+                        }
+                    }
+                }
         }
-    
     }
     
-}
-        }
     
+    public void criaBaixa(Pedido pedido){
+        BDDa_baixa instanceBaixa = new BDDa_baixa();
+        BDBandaPorco instanceBanda = new BDBandaPorco();
+        List<BandaPorco> listBandaPorco = instanceBanda.selectTable();
+        
+        int bandasPedido = pedido.getNumeroBandas();
+        for(int i = 0; i < listBandaPorco.size(); i++) {
+            if(bandasPedido != 0) {
+                if(bandasPedido > listBandaPorco.get(i).getQuantidade()) {
+                    
+                    Da_baixa novo = new Da_baixa();
+                    novo.vinculaBandaPorco(listBandaPorco.get(i));
+                    novo.vinculaPedido(pedido);
+                    
+                    instanceBaixa.insertTable(novo);
+                    
+                    
+                    bandasPedido = bandasPedido - listBandaPorco.get(i).getQuantidade();
+                }
+                else {
+                    
+                }
+            }
+        }
+        
+        
+
     }
+    
+    
 }
