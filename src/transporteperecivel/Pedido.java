@@ -145,6 +145,19 @@ public class Pedido {
         pedidoBD.updateTable(this, getId());
     }
 
+    
+    public void pegaPedidoId(){
+        BDPedido instance = new BDPedido();
+        List<Pedido> listPedido = instance.selectTable();
+        
+        for(int i = 0; i < listPedido.size(); i++) {
+            if( this.getNumeroBandas() == listPedido.get(i).getNumeroBandas() && this.getDataDeEntrega().equals(listPedido.get(i).getDataDeEntrega()) ) {
+                this.setId(listPedido.get(i).getId());
+            }
+        }
+    }
+    
+    
     public void deletaPedido() {
         BDPedido pedidoBD = new BDPedido();
 
