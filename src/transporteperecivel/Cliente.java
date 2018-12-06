@@ -1,6 +1,8 @@
 package transporteperecivel;
 
 import conexao.BDCliente;
+import conexao.BDEndereco;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -49,11 +51,40 @@ public class Cliente {
 
     public void registraCliente() {
         BDCliente clienteBD = new BDCliente();
-
+        int count = 0;
+        
+        ArrayList<Cliente> listacliente = new ArrayList();
+       
+        
         this.setNomeFicticio(JOptionPane.showInputDialog("Digite o nome fictício: "));
         this.setCnpj(JOptionPane.showInputDialog("Digite o CNPJ: "));
-
-        clienteBD.insertTable(this);   
+        
+        listacliente = clienteBD.selectTable();
+        
+        if(!listacliente.isEmpty()){
+            for(int i=0;i < listacliente.size();i++){
+                Cliente novocliente = new Cliente();
+                novocliente = listacliente.get(i);
+                if(novocliente.getCnpj().equals(this.cnpj)){
+                    System.out.println("O cliente ja existe!");
+                    break;
+                    
+                }else{
+                    count++;
+                    if(count == listacliente.size()){
+                        clienteBD.insertTable(this);
+                    
+                    }
+                
+                }
+            }
+        }else{
+            clienteBD.insertTable(this);
+        }
+        
+        
+        
+        
     }
 
     public void alteraCliente() {

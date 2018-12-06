@@ -6,8 +6,10 @@
 package transporteperecivel;
 
 import conexao.BDBairro;
+import conexao.BDCompoe;
 import conexao.BDEndereco;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -72,6 +74,22 @@ public class Compoe {
     
     
     }
+    
+    public void cadastrarCompoe(){
+        Bairro bairro = new Bairro();
+        Cidade cidade = new Cidade();
+        bairro.setNome(JOptionPane.showInputDialog("Insere Nome do bairro: "));
+        cidade.setNome(JOptionPane.showInputDialog("Insira a Cidade"));
+       bairro.vinculaCidade(cidade);
+       this.vinculaBairro(bairro);
+       
+       
+    
+    
+    }
+    
+    
+    
 }
 
 

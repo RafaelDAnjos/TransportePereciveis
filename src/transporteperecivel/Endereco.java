@@ -1,8 +1,11 @@
 package transporteperecivel;
 
 import conexao.BDCliente;
+import conexao.BDCompoe;
+import conexao.BDEndereco;
 import conexao.BDLogradouro;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -98,5 +101,33 @@ public class Endereco {
                 
                 }
             }
+        }
+        
+        public void cadastrarEndereco(Cliente cliente){
+            BDEndereco instance = new BDEndereco();
+            BDCompoe instance2 = new BDCompoe();
+            
+            String numero = JOptionPane.showInputDialog("Insira a descrição do endereço: ");
+            int num = Integer.getInteger(numero);
+            
+            this.setNome(JOptionPane.showInputDialog("Insira a descrição do endereço: "));
+            this.setNumero(num);
+            this.setComplemento(JOptionPane.showInputDialog("Insira a descrição do endereço: "));
+            
+            Logradouro logradouro = new Logradouro();
+            
+            logradouro.setDescricao(JOptionPane.showInputDialog("Descrição Logradouro"));
+            
+            this.vinculaCliente(cliente);
+            this.vinculaLogradouro(logradouro);
+            
+            Compoe compoe = new Compoe();
+            compoe.vinculaEndereco(this);
+            compoe.cadastrarCompoe();
+            
+            instance2.insertTable(compoe);
+            
+            instance.insertTable(this);
+        
         }
 }

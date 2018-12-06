@@ -1,5 +1,8 @@
 package transporteperecivel;
 
+import conexao.BDLogradouro;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 20161bsi0527
@@ -24,6 +27,5 @@ public class Logradouro {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    
    
 }
