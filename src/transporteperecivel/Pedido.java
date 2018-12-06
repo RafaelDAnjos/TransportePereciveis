@@ -4,6 +4,7 @@ import conexao.BDCliente;
 import conexao.BDFuncionario;
 import conexao.BDPedido;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -102,17 +103,62 @@ public class Pedido {
     public void cadastraPedido(Funcionario funcionario, Cliente cliente){
 
     BDPedido pedidoBD = new BDPedido();
-    Pedido pedido = new Pedido();
 
     String numBandas = JOptionPane.showInputDialog("Digite o número de bandas: ");
     int nBandas = Integer.parseInt(numBandas);
 
-    pedido.setNumeroBandas(nBandas);
-    pedido.setDataDeEntrega(JOptionPane.showInputDialog("Digite a data de entrega: "));
-    pedido.vinculaCliente(cliente);
-    pedido.vinculaFuncionario(funcionario);
+    this.setNumeroBandas(nBandas);
+    this.setDataDeEntrega(JOptionPane.showInputDialog("Digite a data de entrega: "));
+    this.vinculaCliente(cliente);
+    this.vinculaFuncionario(funcionario);
 
-    pedidoBD.insertTable(pedido);
+    pedidoBD.insertTable(this);
+    }
+
+
+    public void alteraPedido() {
+        BDPedido pedidoBD = new BDPedido();
+
+        String resposta = JOptionPane.showInputDialog("Digite 1 para alterar o número de bandas"
+                                                       + "\n2 para a data de entrega"
+                                                       + "\n3 para ambos: ");
+        int resp = Integer.parseInt(resposta);
+        
+        if(resp == 1){
+            String numBandas = JOptionPane.showInputDialog("Digite o novo número de bandas: ");
+            int nBandas = Integer.parseInt(numBandas);
+            this.setNumeroBandas(nBandas);
+        }
+        
+        else if(resp == 2) {
+            this.setDataDeEntrega(JOptionPane.showInputDialog("Digite a nova data de entrega: "));
+        }
+        
+        else{
+            String numBandas = JOptionPane.showInputDialog("Digite o novo número de bandas: ");
+            int nBandas = Integer.parseInt(numBandas);
+            
+            this.setNumeroBandas(nBandas);
+            this.setDataDeEntrega(JOptionPane.showInputDialog("Digite a nova data de entrega: "));
+        }
+
+        pedidoBD.updateTable(this, getId());
+    }
+
+    public void deletaPedido() {
+        BDPedido pedidoBD = new BDPedido();
+
+        pedidoBD.deleteTable(getId());
+    }
+    
+    public void lePedidos() {
+        BDPedido pedidoBD = new BDPedido();
+        List<Pedido> pedidos = pedidoBD.selectTable();
+
+        for(int i = 0; i < pedidos.size(); i++) {
+            JOptionPane.showMessageDialog(null, "Número de bandas: " + pedidos.get(i).getNumeroBandas()
+                                             + "\nData de entrega: " + pedidos.get(i).getDataDeEntrega());
+        }
     }
 
 }
