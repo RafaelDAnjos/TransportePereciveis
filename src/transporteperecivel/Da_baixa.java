@@ -77,28 +77,48 @@ public class Da_baixa {
         BDBandaPorco instanceBanda = new BDBandaPorco();
         List<BandaPorco> listBandaPorco = instanceBanda.selectTable();
         
+        int menorId = 10000;
         int bandasPedido = pedido.getNumeroBandas();
         for(int i = 0; i < listBandaPorco.size(); i++) {
-            if(bandasPedido != 0) {
-                if(bandasPedido > listBandaPorco.get(i).getQuantidade()) {
-                    
+            BandaPorco banda = listBandaPorco.get(i);
+            for(int j = 0; j < listBandaPorco.size(); j++) {
+                if((menorId > listBandaPorco.get(j).getId()) && listBandaPorco.get(j).getQuantidade() != 0) {
+                    menorId = listBandaPorco.get(j).getId();
+                    banda = listBandaPorco.get(j);
+                }
+            }
+            if(bandasPedido > banda.getQuantidade()) {
+                
+                if(banda.getQuantidade() != 0) {
                     Da_baixa novo = new Da_baixa();
-                    novo.vinculaBandaPorco(listBandaPorco.get(i));
-                    novo.vinculaPedido(pedido);
+                    novo.vinculaBandaPorco(banda);
+                    novo.vinculaPedido(pedido); 
+                    instanceBaixa.insertTable(novo);
+                }
+                
+                bandasPedido = bandasPedido - banda.getQuantidade();
+                banda.setQuantidade(0);
+                instanceBanda.updateTable(banda, banda.getId());
                     
+                    
+            }
+            else {
+                
+                
+                if(bandasPedido != 0) {
+                    Da_baixa novo = new Da_baixa();
+                    novo.vinculaBandaPorco(banda);
+                    novo.vinculaPedido(pedido);
                     instanceBaixa.insertTable(novo);
                     
                     
-                    bandasPedido = bandasPedido - listBandaPorco.get(i).getQuantidade();
+                    banda.setQuantidade(banda.getQuantidade() - bandasPedido);
+                    instanceBanda.updateTable(banda, banda.getId());
+                    bandasPedido = 0;
                 }
-                else {
                     
-                }
             }
         }
-        
-        
-
     }
     
     

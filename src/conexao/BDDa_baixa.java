@@ -17,7 +17,7 @@ import transporteperecivel.Da_baixa;
  * @author rafae
  */
 public class BDDa_baixa {
-    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "serra";
+    String url = "jdbc:postgresql://localhost:5432/transportePereciveis",usuario = "postgres",senha = "123456";
     public synchronized void  createTable() {
         Connection c = null;
         Statement stmt = null;
@@ -45,7 +45,7 @@ public class BDDa_baixa {
     Statement stmt = null;
     try {
         Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "serra");
+        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
         stmt = c.createStatement();
        
         String comando = "INSERT INTO da_baixa(fk_bandaporco_id, fk__pedido_id)VALUES(" + da_baixa.getFk_BandaPorco_ID()+ "," + da_baixa.getFk__Pedido_ID()+ ");"; 
@@ -64,7 +64,7 @@ public class BDDa_baixa {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "serra");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
             
             String comando = "DELETE FROM da_baixa WHERE fk__pedido_id=" + IDDa_baixa +"and fk_bandaporco_id ="+IDBandaporco+";";
@@ -83,7 +83,7 @@ public class BDDa_baixa {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "serra");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
             
             String sql = "UPDATE da_baixa SET Fk_Bandaporco_ID = " + da_baixa.getFk_BandaPorco_ID()+", Fk__pedido_ID =" +da_baixa.getFk__Pedido_ID()+ " where fk__Pedido_ID = " + da_baixa.getFk__Pedido_ID()+";";
@@ -103,7 +103,7 @@ public class BDDa_baixa {
         Statement stmt = null;
         try {
             Class.forName("org.postgresql.Driver");
-            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "serra");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/transportePereciveis", "postgres", "123456");
             stmt = c.createStatement();
             
             ResultSet rs = stmt.executeQuery("SELECT * FROM da_baixa ;");
